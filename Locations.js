@@ -56,6 +56,13 @@ var locations = [
         foodType: 'vietnamese'
     },
 ];
+/***************************************************************************************************
+ * newLocation - Gets current time and dynamically creates div onto main page
+ * @param: {title, src, food} - strings
+ * @returns: {none}
+ * @calls: {none}
+ */
+
 function newLocation(title,src,food) {
     var newPlace = {};
     newPlace.title = title;

@@ -127,7 +127,7 @@ function currentWeather(){
                     case 'Partly Cloudy':
                     case 'Mostly Cloudy':
                         var canvas = $('<canvas>').attr('id','weatherIcon').css('height','30px').css('position','absolute').css('top','10px');
-                        var skycons = new Skycons({"color": "rgb(104, 122, 153)"});
+                        var skycons = new Skycons({"color": "rgb(214, 229, 252)"});
                         $('#weatherBox').append(canvas);
                         skycons.add("weatherIcon", Skycons.PARTLY_CLOUDY_DAY);
                         skycons.play();
