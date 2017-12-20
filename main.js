@@ -24,7 +24,7 @@ function pickRandomLocation(locationsArray) {
 
 function putPickedPlaceData(pickedPlace) {
     $('#location').text(pickedPlace.title);
-    $('body').css('background-image','url('+pickedPlace.imgSrc+')');
+    $('body').css("background", "url('"+pickedPlace.imgSrc+"')");
 }
 
 /***************************************************************************************************
@@ -49,12 +49,9 @@ function initialize() {
 function geoLocateCall(){
     $('body').addClass('hideOverflow');
     $('#firstPage').fadeOut(1000);
-    if ($(document).width() <= 700) {
-        $('.clock').addClass('clockHide');
-        $('.clockHide').fadeOut(1000);
-    }
+    $('.clock').addClass('clockHide');
+    $('.clockHide').fadeOut(1000);
     $('#foodButton').unbind();
-    console.log('hi');
     $.ajax({
         dataType:'json',
         method: 'post',

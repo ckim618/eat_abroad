@@ -1,12 +1,18 @@
-body {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+@font-face {
+    font-family: 'dense';
+    src: url(./fonts/Dense-Regular.otf);
 }
 
+body {
+    font-family: 'dense';
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
 #weatherBox {
     color: whitesmoke;
     display: inline-block;
+    position: absolute;
     height: 60px;
     font-size: 25px;
     opacity: 0.9;
@@ -20,7 +26,7 @@ body {
 }
 
 #textContainer {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "dense";
     position: fixed;
     top: 50%;
     width:100%;
@@ -29,7 +35,7 @@ body {
 #middleText {
     text-align: center;
     color:floralwhite;
-    font-size:70px;
+    font-size:5em;
     font-weight:500;
     text-shadow: 4px 4px black;
 }
@@ -48,6 +54,7 @@ body {
 #mainPage {
     height:100vh;
     max-width:100vw;
+    background-color: rgba(0,0,0,0.5) !important;
 }
 
 #yelpInfo {
@@ -56,53 +63,44 @@ body {
     flex-flow: wrap;
     justify-content: center;
     align-items: baseline;
-    height: 350px;
-    width: 550px;
-    top: 30px;
-    margin-left: 192px;
     background-color: darkred;
-    float: left;
-    position: relative;
     border-radius: 10px;
     color: white;
     opacity: 0.9;
     padding: 0;
+    margin: 15px;
 }
+
 #businessName {
-    font-size:50px;
+    font-size: 3rem;
     width: 100%;
 }
+
 #price {
-    font-size: 40px;
+    font-size: 4rem;
     line-height: 40px;
     transform: translateY(10px);
-    width: 30%
+
 }
 #businessPhone {
     width: 100%;
-    font-size: 20px;
+    font-size: 2rem;
 }
 #businessAddress {
     width:100%;
-    font-size: 30px;
+    font-size: 3rem;
 }
 #goToYelp {
     color: black;
 }
 
 #yelpPicture {
-    display: inline-block;
-    height: 350px;
-    width: 500px;
-    max-height: 350px;
-    max-width: 500px;
-    position: relative;
-    top: 30px;
-    float: right;
+    height: 32.1vh;
     border-radius: 10px;
     opacity: 0.9;
     overflow: hidden;
     padding: 0;
+    margin: 15px;
 }
 #googleMaps {
     height: 45%;
@@ -142,7 +140,23 @@ body {
     width: 100%;
 }
 
-@media only screen and (max-width: 650px) {
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+#starRating {
+    width: 60%
+}
+
+@media only screen and (max-width: 420px) {
+    .row {
+        all: unset;
+    }
+    
+}
+
+/* @media only screen and (max-width: 650px) {
     body {
         background-size: cover;
         background-repeat: no-repeat;
@@ -167,14 +181,14 @@ body {
 
     #foodButton {
         text-align: center;
-        font-size: 12px;
+        font-size: 1.3em;
         display: block;
         margin: 3% auto;
         height: 40px;
     }
 
     #textContainer {
-        font-family: 'Khula', sans-serif;
+        font-family: 'dense', sans-serif;
     }
 
     #mainPage {
@@ -274,10 +288,8 @@ body {
     .clock {
         transform: translateY(80px);
     }
-    .clockHide {
-
-    }
-}
+   
+} */
 
 
 

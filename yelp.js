@@ -24,6 +24,7 @@ function yelpCall() {
             displayYelp();
 
             $('body').removeClass('hideOverflow');
+            $('.clock, #weatherBox').css('display', 'none');
         }
     });
 }
@@ -63,11 +64,13 @@ function displayYelp() {
     $('#firstPage').fadeOut(1000);
         function yelpAppear(){
             var googleMaps = $('<div>').attr('id','googleMaps').addClass('col-xs-12');
-            var yelpInfo = $('<div>').attr('id','yelpInfo').addClass('col-xs-12');
-            var pictureBox = $('<div>').attr('id','yelpPicture').addClass('col-xs-12');
+            var row = $('<div>').addClass('row');
+            var yelpInfo = $('<div>').attr('id','yelpInfo').addClass('col-xs-12 col-sm-5 col-md-5');
+            var pictureBox = $('<div>').attr('id','yelpPicture').addClass('col-xs-12 col-sm-5 col-md-5');
             // yelpPicture = pickedBusiness.image_url;
             var foodPicture =$('<img>').attr('src',yelpPicture).attr('id','food');
-            $('#mainPage').append(yelpInfo, pictureBox);
+            $(row).append(yelpInfo, pictureBox);
+            $('#mainPage').append(row);
             $('#yelpPicture').append(foodPicture);
             $('#mainPage').append(googleMaps);
             addDescription();
@@ -90,7 +93,6 @@ function addDescription(){
     var starContainer = $('<div>');
     var $stars = $('<img>').attr({'id': 'starRating', 'src': 'images/'+ yelpInfo.rating+ 'star.png'});
     starContainer.append($stars);
-    var $dollar = $('<div>').attr('id', 'price').text(yelpInfo.price);
     $businessName.text(yelpName);
     $businessAddress.html(yelpAddress);
     $businessPhone.text(yelpInfo.display_phone);
@@ -100,7 +102,7 @@ function addDescription(){
         click: directToYelp,
         text: 'Check out on Yelp!'
     });
-    $('#yelpInfo').append($businessName, starContainer, $dollar, $businessPhone, $businessAddress, $goToYelpButton);
+    $('#yelpInfo').append($businessName, starContainer, $businessPhone, $businessAddress, $goToYelpButton);
     $('#food').attr('src',yelpPicture);
 }
 
