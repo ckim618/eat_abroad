@@ -11,7 +11,14 @@ var pickedCuisine;
 
 function pickRandomLocation(locationsArray) {
     var randomIndex = Math.floor(Math.random() * locationsArray.length);
+    if(localStorage.getItem('storageIndex') == randomIndex) {
+        var exclude = localStorage.getItem('storageIndex');
+        while(localStorage.getItem('storageIndex') == exclude) {
+            randomIndex = Math.floor(Math.random() * locationsArray.length);
+        }
+    }
     var randomLocation = locationsArray[randomIndex];
+    localStorage.setItem('storageIndex', randomIndex);    
     return randomLocation;
 }
 

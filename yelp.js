@@ -22,7 +22,6 @@ function yelpCall() {
             console.log('Yelp response worked', response);
             randomizeBusiness(response);
             displayYelp();
-
             $('body').removeClass('hideOverflow');
             $('.clock, #weatherBox').css('display', 'none');
         }

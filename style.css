@@ -19,7 +19,7 @@ body {
     width: 10%;
     text-align: center;
     vertical-align: middle;
-    text-shadow: 2px 2px black;
+    text-shadow: 2px 2px 3px black;
     padding-top: 10px;
     padding-right: 50px;
     float: right;
@@ -48,7 +48,9 @@ body {
     text-align: center;
     display: block;
     margin: auto;
-    height: 40px;
+    height: 45px;
+    font-size: 2rem;
+    text-shadow: 2px 2px 3px black;
 }
 
 #mainPage {
@@ -94,6 +96,7 @@ body {
     color: white;
     width: 35%;
     font-size: 2rem;
+    text-shadow: 2px 2px 3px black;
 }
 
 #yelpPicture {
@@ -169,8 +172,11 @@ body {
         border-radius: 0px;
     }
     #googleMaps {
-        all: unset;
+        transform: translateY(0%);
+        margin-left: 0;
+        border-radius: 0;
         height: 40%;
+        width: 100%
     }
     #weatherIcon {
         margin-left: 13px;
