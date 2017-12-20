@@ -63,13 +63,13 @@ function randomizeBusiness(response) {
 function displayYelp() {
     $('#firstPage').fadeOut(1000);
         function yelpAppear(){
-            var googleMaps = $('<div>').attr('id','googleMaps').addClass('col-xs-12');
+            var googleMaps = $('<div>').attr('id','googleMaps').addClass('col-xs-12 col-sm-12 col-md-12');
             var row = $('<div>').addClass('row');
             var yelpInfo = $('<div>').attr('id','yelpInfo').addClass('col-xs-12 col-sm-5 col-md-5');
             var pictureBox = $('<div>').attr('id','yelpPicture').addClass('col-xs-12 col-sm-5 col-md-5');
             // yelpPicture = pickedBusiness.image_url;
             var foodPicture =$('<img>').attr('src',yelpPicture).attr('id','food');
-            $(row).append(yelpInfo, pictureBox);
+            $(row).append(pictureBox, yelpInfo);
             $('#mainPage').append(row);
             $('#yelpPicture').append(foodPicture);
             $('#mainPage').append(googleMaps);
@@ -97,13 +97,13 @@ function addDescription(){
     $businessAddress.html(yelpAddress);
     $businessPhone.text(yelpInfo.display_phone);
     var $goToYelpButton = $('<button>', {
-        class: 'btn btn-danger',
+        class: 'btn btn-success',
         attr: {'id': 'goToYelp'},
         click: directToYelp,
         text: 'Check out on Yelp!'
     });
-    $('#yelpInfo').append($businessName, starContainer, $businessPhone, $businessAddress, $goToYelpButton);
     $('#food').attr('src',yelpPicture);
+    $('#yelpInfo').append($businessName, starContainer, $businessPhone, $businessAddress, $goToYelpButton);
 }
 
 /***************************************************************************************************

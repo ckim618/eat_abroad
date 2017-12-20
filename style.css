@@ -28,7 +28,7 @@ body {
 #textContainer {
     font-family: "dense";
     position: fixed;
-    top: 50%;
+    top: 45%;
     width:100%;
 }
 
@@ -91,7 +91,9 @@ body {
     font-size: 3rem;
 }
 #goToYelp {
-    color: black;
+    color: white;
+    width: 35%;
+    font-size: 2rem;
 }
 
 #yelpPicture {
@@ -149,11 +151,30 @@ body {
     width: 60%
 }
 
+@media only screen and (max-width: 650px) {
+    #goToYelp {
+        font-size: 1.5rem;
+        width: 40%;
+    }
+    
+}
+
 @media only screen and (max-width: 420px) {
     .row {
         all: unset;
     }
-    
+    #yelpInfo, #yelpPicture {
+        margin: 0;
+        height: 30%;
+        border-radius: 0px;
+    }
+    #googleMaps {
+        all: unset;
+        height: 40%;
+    }
+    #weatherIcon {
+        margin-left: 13px;
+    }
 }
 
 /* @media only screen and (max-width: 650px) {
