@@ -62,6 +62,7 @@ function randomizeBusiness(response) {
 function displayYelp() {
     $('#firstPage').fadeOut(1000);
         function yelpAppear(){
+            var returnButton = $('<button>').addClass('col-xs-12 btn btn-primary returnButton').text('Go Back');            
             var googleMaps = $('<div>').attr('id','googleMaps').addClass('col-xs-12 col-sm-12 col-md-12');
             var row = $('<div>').addClass('row');
             var yelpInfo = $('<div>').attr('id','yelpInfo').addClass('col-xs-12 col-sm-5 col-md-5');
@@ -71,7 +72,7 @@ function displayYelp() {
             $(row).append(pictureBox, yelpInfo);
             $('#mainPage').append(row);
             $('#yelpPicture').append(foodPicture);
-            $('#mainPage').append(googleMaps);
+            $('#mainPage').append(googleMaps, returnButton);
             addDescription();
         }
     setTimeout(yelpAppear,1000);
