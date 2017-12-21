@@ -44,6 +44,7 @@ function putPickedPlaceData(pickedPlace) {
 
 function initialize() {
     console.log('Initializing')
+    $('.cs-loader').hide();
     applyClickHandlers();
     pickedCuisine = pickRandomLocation(locations);
     putPickedPlaceData(pickedCuisine);
@@ -57,10 +58,11 @@ function initialize() {
  */
 function geoLocateCall(){
     $('body').addClass('hideOverflow');
-    $('#firstPage').fadeOut(1000);
+    $('#firstPage').fadeOut(750);
     $('.clock').addClass('clockHide');
-    $('.clockHide, #weatherBox').fadeOut(1000);
+    $('.clockHide, #weatherBox').fadeOut(750);
     $('#foodButton').unbind();
+    $('.cs-loader').show();
     $.ajax({
         dataType:'json',
         method: 'post',

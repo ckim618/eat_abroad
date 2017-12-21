@@ -60,7 +60,7 @@ function randomizeBusiness(response) {
  */
 
 function displayYelp() {
-    $('#firstPage').fadeOut(1000);
+    $('#firstPage').fadeOut(500);
         function yelpAppear(){
             var returnButton = $('<button>').addClass('col-xs-12 btn btn-primary returnButton').text('Try Another Country');            
             var googleMaps = $('<div>').attr('id','googleMaps').addClass('col-xs-12 col-sm-12 col-md-12');
@@ -75,8 +75,9 @@ function displayYelp() {
             $('#mainPage').append(googleMaps, returnButton);
             addDescription();
         }
-    setTimeout(yelpAppear,1000);
-    setTimeout(initMap,1000);
+    $('.cs-loader').hide();
+    setTimeout(yelpAppear,500);
+    setTimeout(initMap,500);
 }
 
 /***************************************************************************************************
