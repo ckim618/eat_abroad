@@ -36,7 +36,7 @@ function yelpCall() {
  */
 
 function randomizeBusiness(response) {
-    var randomIndex = Math.floor(Math.random() * 6);
+    var randomIndex = Math.floor(Math.random() * 11);
     var pickedBusiness = response.businesses[randomIndex];
     console.log('Random business pick was', pickedBusiness);
     yelpPicture = pickedBusiness.image_url;
@@ -62,7 +62,7 @@ function randomizeBusiness(response) {
 function displayYelp() {
     $('#firstPage').fadeOut(1000);
         function yelpAppear(){
-            var returnButton = $('<button>').addClass('col-xs-12 btn btn-primary returnButton').text('Go Back');            
+            var returnButton = $('<button>').addClass('col-xs-12 btn btn-primary returnButton').text('Try Another Country');            
             var googleMaps = $('<div>').attr('id','googleMaps').addClass('col-xs-12 col-sm-12 col-md-12');
             var row = $('<div>').addClass('row');
             var yelpInfo = $('<div>').attr('id','yelpInfo').addClass('col-xs-12 col-sm-5 col-md-5');
@@ -100,7 +100,7 @@ function addDescription(){
         class: 'btn btn-success',
         attr: {'id': 'goToYelp'},
         click: directToYelp,
-        text: 'Check out on Yelp!'
+        text: 'Check Out On Yelp!'
     });
     $('#food').attr('src',yelpPicture);
     $('#yelpInfo').append($businessName, starContainer, $businessPhone, $businessAddress, $goToYelpButton);

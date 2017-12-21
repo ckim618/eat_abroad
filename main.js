@@ -11,9 +11,10 @@ var pickedCuisine;
 
 function pickRandomLocation(locationsArray) {
     var randomIndex = Math.floor(Math.random() * locationsArray.length);
-    if(localStorage.getItem('storageIndex') == randomIndex) {
-        var exclude = localStorage.getItem('storageIndex');
-        while(localStorage.getItem('storageIndex') == exclude) {
+    var localStorageIndex = localStorage.getItem('storageIndex')
+    if(localStorageIndex == randomIndex) {
+        var exclude = localStorageIndex;
+        while(localStorageIndex == exclude) {
             randomIndex = Math.floor(Math.random() * locationsArray.length);
         }
     }
@@ -42,6 +43,7 @@ function putPickedPlaceData(pickedPlace) {
  */
 
 function initialize() {
+    console.log('Initializing')
     applyClickHandlers();
     pickedCuisine = pickRandomLocation(locations);
     putPickedPlaceData(pickedCuisine);
@@ -57,7 +59,7 @@ function geoLocateCall(){
     $('body').addClass('hideOverflow');
     $('#firstPage').fadeOut(1000);
     $('.clock').addClass('clockHide');
-    $('.clockHide').fadeOut(1000);
+    $('.clockHide, #weatherBox').fadeOut(1000);
     $('#foodButton').unbind();
     $.ajax({
         dataType:'json',
@@ -78,9 +80,26 @@ function geoLocateCall(){
  * @returns: {none}
  * @calls:
  */
-
 function applyClickHandlers() {
-    $('#foodButton').click(geoLocateCall);
+    $('#foodButton').on('click', geoLocateCall);
+    $(document).on('click', '.returnButton', returnButton);
+}
+
+/***************************************************************************************************
+ * returnButton - Removes elements from yelp info and maps then picks another location for the user to chose from
+ * @param: {none}
+ * @returns: {none}
+ * @calls: { pickRandomLocation, putPickedPlaceData, currentWeather, geoLocateCall }
+ */
+function returnButton() {
+    $('#weatherBox').css('display', 'initial');
+    $('#firstPage').css('display', 'flex');
+    $('.row, .returnButton, #googleMaps').remove();
+    pickedCuisine = pickRandomLocation(locations);
+    putPickedPlaceData(pickedCuisine);
+    currentWeather();
+    $('.clock').removeClass('clockHide').css('display', 'inline-block');
+    $('#foodButton').on('click', geoLocateCall);
 }
 
 /***************************************************************************************************

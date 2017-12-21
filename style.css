@@ -159,11 +159,15 @@ body {
     position: absolute;
     bottom: 8%;
     margin-left: -50%;
+    font-size: 2rem;
+}
+.returnButton:hover {
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 650px) {
     #goToYelp {
-        font-size: 1.5rem;
+        font-size: 2rem;
         width: 40%;
     }
     
