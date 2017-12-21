@@ -2,6 +2,8 @@ var yelpName;
 var yelpPicture;
 var yelpAddress;
 var yelpInfo;
+var yelpOpen;
+var yelpReviewCount;
 
 /***************************************************************************************************
  * yelpCall - Uses Yelp API to get response data from a search based on the random country selected on main page
@@ -41,6 +43,8 @@ function randomizeBusiness(response) {
     console.log('Random business pick was', pickedBusiness);
     yelpPicture = pickedBusiness.image_url;
     yelpName = pickedBusiness.name;
+    yelpReviewCount = pickedBusiness.review_count;
+    yelpOpen = pickedBusiness.is_closed;
     var addressLine1 = pickedBusiness.location.display_address[0];
     if (pickedBusiness.location.display_address.length == 3) {
         addressLine1 += ' ' + pickedBusiness.location.display_address[1];
@@ -67,7 +71,6 @@ function displayYelp() {
             var row = $('<div>').addClass('row');
             var yelpInfo = $('<div>').attr('id','yelpInfo').addClass('col-xs-12 col-sm-5 col-md-5');
             var pictureBox = $('<div>').attr('id','yelpPicture').addClass('col-xs-12 col-sm-5 col-md-5');
-            // yelpPicture = pickedBusiness.image_url;
             var foodPicture =$('<img>').attr('src',yelpPicture).attr('id','food');
             $(row).append(pictureBox, yelpInfo);
             $('#mainPage').append(row);
@@ -91,9 +94,10 @@ function addDescription(){
     var $businessName = $('<div>').attr('id','businessName');
     var $businessAddress = $('<div>').attr('id', 'businessAddress');
     var $businessPhone = $('<div>').attr('id', 'businessPhone');
-    var starContainer = $('<div>');
+    var starContainer = $('<div>').addClass('starContainer');
     var $stars = $('<img>').attr({'id': 'starRating', 'src': 'images/'+ yelpInfo.rating+ 'star.png'});
-    starContainer.append($stars);
+    var reviewCount = $('<div>').addClass('reviewCount').text(yelpReviewCount + ' Reviews');
+    starContainer.append($stars, reviewCount);
     $businessName.text(yelpName);
     $businessAddress.html(yelpAddress);
     $businessPhone.text(yelpInfo.display_phone);
