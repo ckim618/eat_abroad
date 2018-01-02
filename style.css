@@ -48,11 +48,18 @@ img {
 #location{
     display: inline-block;
 }
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+}
 
 #foodButton {
-    text-align: center;
-    display: block;
-    margin: auto;
+    margin-right: 15px;
+    height: 45px;
+    font-size: 2rem;
+    text-shadow: 2px 2px 3px black;
+}
+#countryButton {
     height: 45px;
     font-size: 2rem;
     text-shadow: 2px 2px 3px black;

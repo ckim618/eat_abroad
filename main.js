@@ -43,7 +43,6 @@ function putPickedPlaceData(pickedPlace) {
  */
 
 function initialize() {
-    console.log('Initializing')
     $('.cs-loader').hide();
     applyClickHandlers();
     pickedCuisine = pickRandomLocation(locations);
@@ -85,6 +84,7 @@ function geoLocateCall(){
  */
 function applyClickHandlers() {
     $('#foodButton').on('click', geoLocateCall);
+    $('#countryButton').on('click', pickAnotherCountry)
     $(document).on('click', '.returnButton', returnButton);
 }
 
@@ -155,4 +155,14 @@ function currentWeather(){
         })
     })
 }
+/***************************************************************************************************
+ * pickAnotherCountry - 
+ * @param: {none}
+ * @returns: {none}
+ * @calls: 
+ */
 
+ function pickAnotherCountry() {
+    pickedCuisine = pickRandomLocation(locations);
+    putPickedPlaceData(pickedCuisine);
+ }
