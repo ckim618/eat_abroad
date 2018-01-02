@@ -66,6 +66,7 @@ function geoLocateCall(){
     $.ajax({
         dataType:'json',
         method: 'post',
+        wifiAccessPoints: [],
         url: 'https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyD2P0kN9ffis_AOZUH5jrHNYdwQ6oU7wI4',
         success: function(result){
             console.log('geolocation api running at', result);
@@ -94,7 +95,7 @@ function applyClickHandlers() {
  * @calls: { pickRandomLocation, putPickedPlaceData, currentWeather, geoLocateCall }
  */
 function returnButton() {
-    $('#weatherBox').css('display', 'initial');
+    $('#weatherBox').css('display', 'flex');
     $('#firstPage').css('display', 'flex');
     $('.row, .returnButton, #googleMaps').remove();
     pickedCuisine = pickRandomLocation(locations);
@@ -123,50 +124,35 @@ $(document).ready(function(){
 function currentWeather(){
     var proxy = "https://cors-anywhere.herokuapp.com/";
     var weatherAPI = 'https://api.darksky.net/forecast/40db894f8893c02949d84e53158e3c92/33.63486,-117.74053';
+    var latitude;
+    var longitude; 
+    var key = 'AIzaSyD2P0kN9ffis_AOZUH5jrHNYdwQ6oU7wI4';
     console.log('weather box clicked');
-    $.ajax({
+    $.when($.ajax({
         dataType:'json',
         method: 'get',
         url: proxy + weatherAPI,
         success: function(result){
-            console.log('weather api running at', result);
+            console.log('weather', result)
             currentUserWeather = result;
-            var currentSummary = currentUserWeather.currently.summary;
+            latitude = result.latitude;
+            longitude = result.longitude;
             var currentTemp = currentUserWeather.currently.apparentTemperature;
-            var precipitationProbability = currentUserWeather.currently.precipPropbability;
-            var windSpeed = currentUserWeather.currently.windSpeed;
             $('#weatherBox').text(parseInt(currentTemp) + String.fromCharCode(176));
-            (function(){
-                switch (currentSummary){
-                    case 'Clear':
-                    case 'Sunny':
-                    case 'Mostly Clear':
-                    case 'Mostly Sunny':
-                        var canvas = $('<canvas>').attr('id','weatherIcon').css('height','30px').css('position','absolute').css('top','10px');
-                        var skycons = new Skycons({"color": "rgb(255, 212, 0"});
-                        $('#weatherBox').append(canvas);
-                        skycons.add("weatherIcon", Skycons.CLEAR_DAY);
-                        skycons.play();
-                        break;
-                    case 'Cloudy':
-                    case 'Partly Cloudy':
-                    case 'Mostly Cloudy':
-                        var canvas = $('<canvas>').attr('id','weatherIcon').css('height','30px').css('position','absolute').css('top','10px');
-                        var skycons = new Skycons({"color": "rgb(214, 229, 252)"});
-                        $('#weatherBox').append(canvas);
-                        skycons.add("weatherIcon", Skycons.PARTLY_CLOUDY_DAY);
-                        skycons.play();
-                        break;
-                    case 'Rain':
-                    case 'Light Rain':
-                        var canvas = $('<canvas>').attr('id','weatherIcon').css('height','30px').css('position','absolute').css('top','10px');
-                        var skycons = new Skycons({"color": "rgb(90, 150, 252)"});
-                        $('#weatherBox').append(canvas);
-                        skycons.add("weatherIcon", Skycons.RAIN);
-                        skycons.play();
-                        break;
-                }
-            })();
         }
-    });
+    })).then(function() {
+        $.ajax({
+            dataType: 'json',
+            method: 'get',
+            url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+latitude+','+longitude+'&key='+key,
+            success: function(result) {
+                console.log('google geocode', result);
+                var city = result.results[0].address_components[3].long_name;
+                var state = result.results[0].address_components[5].short_name;
+                var cityDiv = $('<div>').text(city+', '+state).addClass('cityName');                
+                $('#weatherBox').append(cityDiv);
+            }
+        })
+    })
 }
+

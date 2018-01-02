@@ -1,5 +1,5 @@
 var locations = [
-    {title: 'The United States',
+    {title: 'United States',
      imgSrc: './images/America.jpg',
      foodType: 'American'
     },

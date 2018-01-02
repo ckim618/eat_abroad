@@ -94,9 +94,11 @@ function addDescription(){
     var $businessName = $('<div>').attr('id','businessName');
     var $businessAddress = $('<div>').attr('id', 'businessAddress');
     var $businessPhone = $('<div>').attr('id', 'businessPhone');
+    var $stars = $('<img>').attr({'id': 'starRating', 'src': 'images/'+ yelpInfo.rating+ 'star.png'});    
     var starContainer = $('<div>').addClass('starContainer');
-    var $stars = $('<img>').attr({'id': 'starRating', 'src': 'images/'+ yelpInfo.rating+ 'star.png'});
     var reviewCount = $('<div>').addClass('reviewCount').text(yelpReviewCount + ' Reviews');
+    var storeOpen = yelpOpen ? 'Open' : '';
+    var storeOpenDiv = $('<div>').text(storeOpen).addClass(storeOpen);
     starContainer.append($stars, reviewCount);
     $businessName.text(yelpName);
     $businessAddress.html(yelpAddress);
@@ -108,7 +110,7 @@ function addDescription(){
         text: 'Check Out On Yelp!'
     });
     $('#food').attr('src',yelpPicture);
-    $('#yelpInfo').append($businessName, starContainer, $businessPhone, $businessAddress, $goToYelpButton);
+    $('#yelpInfo').append($businessName, starContainer, $businessPhone, storeOpenDiv, $businessAddress, $goToYelpButton);
 }
 
 /***************************************************************************************************
