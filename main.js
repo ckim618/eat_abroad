@@ -48,6 +48,7 @@ function initialize() {
     pickedCuisine = pickRandomLocation(locations);
     putPickedPlaceData(pickedCuisine);
     currentWeather();
+    moveUnderline();
 }
 /***************************************************************************************************
  * geoLocateCall - calls the Google geolocation API
@@ -161,8 +162,21 @@ function currentWeather(){
  * @returns: {none}
  * @calls: 
  */
-
  function pickAnotherCountry() {
     pickedCuisine = pickRandomLocation(locations);
     putPickedPlaceData(pickedCuisine);
  }
+/***************************************************************************************************
+ * moveUnderline - moves the position of underline hr to be under the hovered button 
+ * @param: {none}
+ * @returns: {none}
+ * @calls: 
+ */
+function moveUnderline() {
+    $('#foodButton').hover(function() {
+        $('#underline').css('margin-left', '29%');
+    });
+    $('#countryButton').hover(function() {
+        $('#underline').css('margin-left', '56%');
+    });
+}

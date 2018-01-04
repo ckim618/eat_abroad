@@ -13,6 +13,15 @@ body {
 img {
     image-rendering: pixelated;
 }
+
+#underline {
+    height: .5rem;
+    width: 15%;
+    margin: 0 0 0 29%;
+    background: whitesmoke;
+    border: none;
+    transition: .3s ease-in-out;
+  }
 #weatherBox {
     color: whitesmoke;
     font-size: 25px;
@@ -49,9 +58,23 @@ img {
     display: inline-block;
 }
 .buttonContainer {
-    display: flex;
-    justify-content: center;
+    width: 60%;
+    margin: 0 auto;
+    color: whitesmoke;
 }
+
+li {
+    display: inline-block;
+    width: 25%;
+    padding: .75rem 0;
+    margin: 0;
+    text-decoration: none;
+}  
+
+ul {
+    text-align: center;
+    padding: 0;
+}  
 
 #foodButton {
     margin-right: 15px;
@@ -59,10 +82,16 @@ img {
     font-size: 2rem;
     text-shadow: 2px 2px 3px black;
 }
+#foodButton:hover{
+    cursor: pointer;
+}
 #countryButton {
     height: 45px;
     font-size: 2rem;
     text-shadow: 2px 2px 3px black;
+}
+#countryButton:hover {
+    cursor: pointer;
 }
 
 #mainPage {
