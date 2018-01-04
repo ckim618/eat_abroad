@@ -4,6 +4,8 @@ var yelpAddress;
 var yelpInfo;
 var yelpOpen;
 var yelpReviewCount;
+var yelpBusinessId;
+
 
 /***************************************************************************************************
  * yelpCall - Uses Yelp API to get response data from a search based on the random country selected on main page
@@ -15,19 +17,31 @@ var yelpReviewCount;
 function yelpCall() {
     var proxy = 'https://cors-anywhere.herokuapp.com/';
     var yelpApi = 'https://api.yelp.com/v3/businesses/search?term=' + pickedCuisine.foodType + '&latitude=' + userLocation_result.lat +'&longitude=' + userLocation_result.lng +'&Authorization=Bearer N6_WFXHCeAWzeFBJvljs8lgptMrgkJoakrMe8wiS04dihDrsNiFWu4rWc1_5X7HzcV-tbq9L2lUOQ5qPNYloCRoexh57VDFuaaVG7p3MnlQEQ1bG59HP3vqSoSLcWXYx';
-    $.ajax({
-        dataType: 'json',
-        method: 'get',
-        url: proxy + yelpApi,
-        headers: {Authorization: 'Bearer N6_WFXHCeAWzeFBJvljs8lgptMrgkJoakrMe8wiS04dihDrsNiFWu4rWc1_5X7HzcV-tbq9L2lUOQ5qPNYloCRoexh57VDFuaaVG7p3MnlQEQ1bG59HP3vqSoSLcWXYx'},
-        success: function (response) {
-            console.log('Yelp response worked', response);
-            randomizeBusiness(response);
-            displayYelp();
-            $('body').removeClass('hideOverflow');
-            $('.clock, #weatherBox').css('display', 'none');
-        }
-    });
+    var businessUrl = 'https://api.yelp.com/v3/businesses/';
+    $.when(
+        $.ajax({
+            dataType: 'json',
+            method: 'get',
+            url: proxy + yelpApi,
+            headers: {Authorization: 'Bearer N6_WFXHCeAWzeFBJvljs8lgptMrgkJoakrMe8wiS04dihDrsNiFWu4rWc1_5X7HzcV-tbq9L2lUOQ5qPNYloCRoexh57VDFuaaVG7p3MnlQEQ1bG59HP3vqSoSLcWXYx'},
+            success: function (response) {
+                console.log('Yelp response worked', response);
+                randomizeBusiness(response);
+                displayYelp();
+                $('body').removeClass('hideOverflow');
+                $('.clock, #weatherBox').css('display', 'none');
+            }
+        })).then(function() {
+            $.ajax({
+                dataType: 'json',
+                method: 'get',
+                url: proxy + businessUrl,
+                headers: {Authorization: 'Bearer N6_WFXHCeAWzeFBJvljs8lgptMrgkJoakrMe8wiS04dihDrsNiFWu4rWc1_5X7HzcV-tbq9L2lUOQ5qPNYloCRoexh57VDFuaaVG7p3MnlQEQ1bG59HP3vqSoSLcWXYx'},                
+                success: function(response) {
+                    console.log('Business info', response);
+                }
+            })
+        })
 }
 
 /***************************************************************************************************
@@ -41,6 +55,7 @@ function randomizeBusiness(response) {
     var randomIndex = Math.floor(Math.random() * 6);
     var pickedBusiness = response.businesses[randomIndex];
     console.log('Random business pick was', pickedBusiness);
+    yelpBusinessId = pickedBusiness.id;
     yelpPicture = pickedBusiness.image_url;
     yelpName = pickedBusiness.name;
     yelpReviewCount = pickedBusiness.review_count;
