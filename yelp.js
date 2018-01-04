@@ -38,7 +38,7 @@ function yelpCall() {
  */
 
 function randomizeBusiness(response) {
-    var randomIndex = Math.floor(Math.random() * 11);
+    var randomIndex = Math.floor(Math.random() * 6);
     var pickedBusiness = response.businesses[randomIndex];
     console.log('Random business pick was', pickedBusiness);
     yelpPicture = pickedBusiness.image_url;

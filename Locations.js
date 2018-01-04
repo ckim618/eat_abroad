@@ -1,57 +1,86 @@
 var locations = [
-    {title: 'The United States',
-     imgSrc: './images/America.jpg',
-     foodType: 'American'
+    {
+        title: 'The United States',
+        imgSrc: './images/America.jpg',
+        foodType: 'American'
     },
-    {title: 'China',
+    {
+        title: 'China',
         imgSrc: './images/China.jpg',
         foodType: 'Chinese'
     },
-    {title: 'Cuba',
+    {
+        title: 'Cuba',
         imgSrc: './images/Cuba.jpg',
         foodType: 'Cuban'
     },
-    {title: 'France',
+    {
+        title: 'France',
         imgSrc: './images/France.jpg',
         foodType: 'French'
     },
-    {title: 'Hawaii',
+    {
+        title: 'Germany',
+        imgSrc: './images/Germany.jpg',
+        foodType: 'German'
+    },
+    {
+        title: 'Greece',
+        imgSrc: './images/Greece.jpg',
+        foodType: 'Greek'
+    },
+    {
+        title: 'Hawaii',
         imgSrc: './images/Hawaii.jpg',
         foodType: 'Hawaiian'
     },
-    {title: 'India',
+    {
+        title: 'India',
         imgSrc: './images/India.jpg',
         foodType: 'Indian'
     },
-    {title: 'Iran',
+    {
+        title: 'Iran',
         imgSrc: './images/Iran.jpg',
         foodType: 'Iranian'
     },
-    {title: 'Italy',
+    {
+        title: 'Italy',
         imgSrc: './images/Italy.jpg',
         foodType: 'Italian'
     },
-    {title: 'Japan',
+    {
+        title: 'Japan',
         imgSrc: './images/Japan.jpg',
         foodType: 'Japanese'
     },
-    {title: 'Korea',
+    {
+        title: 'Korea',
         imgSrc: './images/Korea.jpg',
         foodType: 'Korean'
     },
-    {title: 'Mexico',
+    {
+        title: 'Mexico',
         imgSrc: './images/Mexico.jpg',
         foodType: 'Mexican'
     },
-    {title: 'The Philippines',
+    {
+        title: 'Peru',
+        imgSrc: './images/Peru.jpg',
+        foodType: 'Peruvian'
+    },
+    {
+        title: 'The Philippines',
         imgSrc: './images/Philippines.jpg',
         foodType: 'filipino'
     },
-    {title: 'Thailand',
+    {
+        title: 'Thailand',
         imgSrc: './images/Thailand.jpg',
         foodType: 'thai'
     },
-    {title: 'Vietnam',
+    {
+        title: 'Vietnam',
         imgSrc: './images/Vietnam.jpeg',
         foodType: 'vietnamese'
     },
@@ -71,4 +100,66 @@ function newLocation(title,src,food) {
     locations.push(newPlace);
 }
 
+/***************************************************************************************************
+ * geoLocateCall - calls the Google geolocation API
+ * @param: {none}
+ * @returns: {none}
+ * @calls: Google geolocation API
+ */
+function geoLocateCall(){
+    $('body').addClass('hideOverflow');
+    $('#firstPage').fadeOut(750);
+    $('.clock').addClass('clockHide');
+    $('.clockHide, #weatherBox').fadeOut(750);
+    $('#foodButton').unbind();
+    $('.cs-loader').show();
+    $.ajax({
+        dataType:'json',
+        method: 'post',
+        wifiAccessPoints: [],
+        url: 'https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyD2P0kN9ffis_AOZUH5jrHNYdwQ6oU7wI4',
+        success: function(result){
+            console.log('geolocation api running at', result);
+            userLocation_result = result.location;
+            yelpCall();
+        }
+    });
+
+}
+
+/***************************************************************************************************
+ * pickRandomLocation - Picks random location from locationsArray
+ * @param: {locationsArray}
+ * @returns: {randomLocation} picks location from array
+ * @calls:
+ */
+
+function pickRandomLocation(locationsArray) {
+    var randomIndex = Math.floor(Math.random() * locationsArray.length);
+    var randomLocation = locationsArray[randomIndex];
+    return randomLocation;
+}
+
+/***************************************************************************************************
+ * pickAnotherCountry - 
+ * @param: {none}
+ * @returns: {none}
+ * @calls: 
+ */
+function pickAnotherCountry() {
+    pickedCuisine = pickRandomLocation(locations);
+    putPickedPlaceData(pickedCuisine);
+ }
+
+/***************************************************************************************************
+ * putPickedPlaceData - Adds randomly selected location to DOM
+ * @param: {pickedPlace} Takes in randomly selected place
+ * @returns: {none}
+ * @calls:
+ */
+
+function putPickedPlaceData(pickedPlace) {
+    $('#location').text(pickedPlace.title);
+    $('body').css("background", "url('"+pickedPlace.imgSrc+"')");
+}
 
