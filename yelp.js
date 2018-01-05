@@ -1,6 +1,8 @@
 var businessUrl;
 var yelpName;
-var yelpPicture;
+var yelpPicture1;
+var yelpPicture2;
+var yelpPicture3;
 var yelpAddress;
 var yelpInfo;
 var yelpOpen;
@@ -55,7 +57,6 @@ function randomizeBusiness(response) {
     var pickedBusiness = response.businesses[randomIndex];
     console.log('Random business pick was', pickedBusiness);
     yelpBusinessId = pickedBusiness.id;
-    yelpPicture = pickedBusiness.image_url;
     yelpName = pickedBusiness.name;
     yelpReviewCount = pickedBusiness.review_count;
     yelpOpen = pickedBusiness.is_closed;
@@ -80,18 +81,20 @@ function randomizeBusiness(response) {
 
 function displayYelp(response) {
     console.log('Display to yelp response', response);
+    var yelpPhoto = response.photos;
+    yelpPicture1 = yelpPhoto[0];
+    yelpPicture2 = yelpPhoto[1];
+    yelpPicture3 = yelpPhoto[2];
     $('#firstPage').fadeOut(500);
         function yelpAppear(){
-            var returnButton = $('<button>').addClass('col-xs-12 btn btn-primary returnButton').text('Try Another Country');            
-            var googleMaps = $('<div>').attr('id','googleMaps').addClass('col-xs-12 col-sm-12 col-md-12');
-            var row = $('<div>').addClass('row');
-            var yelpInfo = $('<div>').attr('id','yelpInfo').addClass('col-xs-12 col-sm-5 col-md-5');
-            var pictureBox = $('<div>').attr('id','yelpPicture').addClass('col-xs-12 col-sm-5 col-md-5');
-            var foodPicture =$('<img>').attr('src',yelpPicture).attr('id','food');
-            $(row).append(pictureBox, yelpInfo);
-            $('#mainPage').append(row);
-            $('#yelpPicture').append(foodPicture);
-            $('#mainPage').append(googleMaps, returnButton);
+            var picContainer = $('<div>').addClass('picContainer');
+            var picRow = $('<div>').addClass('picrow');
+            var pic1 = $('<img>').attr('src', yelpPicture1).addClass('col-md-4');
+            var pic2 = $('<img>').attr('src', yelpPicture2).addClass('col-md-4');
+            var pic3 = $('<img>').attr('src', yelpPicture3).addClass('col-md-4');
+            var completedRow = $(picRow).append(pic1, pic2, pic3);
+            var completedContainer = $(picContainer).append(completedRow);
+            $('#mainPage').append(completedContainer);            
         }
     $('.cs-loader').hide();
     addDescription();    
@@ -125,7 +128,7 @@ function addDescription(){
         click: directToYelp,
         text: 'Check Out On Yelp!'
     });
-    $('#food').attr('src',yelpPicture);
+    $('#food').attr('src',yelpPicture1);
     $('#yelpInfo').append($businessName, starContainer, $businessPhone, storeOpenDiv, $businessAddress, $goToYelpButton);
 }
 
@@ -139,3 +142,11 @@ function addDescription(){
 function directToYelp() {
     window.open(yelpInfo.url);
 }
+
+
+// var returnButton = $('<button>').addClass('col-xs-12 btn btn-primary returnButton').text('Try Another Country');            
+// // var googleMaps = $('<div>').attr('id','googleMaps').addClass('col-xs-12 col-sm-12 col-md-12');
+// // var row = $('<div>').addClass('row');
+// // var yelpInfo = $('<div>').attr('id','yelpInfo').addClass('col-xs-12 col-sm-5 col-md-5');
+// // var pictureBox = $('<div>').attr('id','yelpPicture').addClass('col-xs-12 col-sm-5 col-md-5');
+// // var foodPicture =$('<img>').attr('src',yelpPicture1).attr('id','food');
