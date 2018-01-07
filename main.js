@@ -87,6 +87,6 @@ function moveUnderline() {
  * @calls: 
  */
 function weatherSpinner() {
-    var iDiv = $('<i>').addClass('weatherSpinner fa fa-spinner fa-pulse fa-lg fa-fw');
+    var iDiv = $('<i>').addClass('weatherSpinner fa fa-spinner fa-spin fa-lg fa-fw');
     $('#weatherBox').append(iDiv);
 }
