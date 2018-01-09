@@ -29,7 +29,7 @@ function currentWeatherLocation() {
 
 function currentWeather(){
     var proxy = "https://cors-anywhere.herokuapp.com/";
-    var weatherAPI = 'https://api.darksky.net/forecast/40db894f8893c02949d84e53158e3c92/'+weatherLatitude+','+weatherLongitude; 
+    var weatherAPI = 'https://api.darksky.net/forecast/40db894f8893c02949d84e53158e3c92/'+weatherLatitude+''+weatherLongitude; 
     var key = 'AIzaSyD2P0kN9ffis_AOZUH5jrHNYdwQ6oU7wI4';
     weatherSpinner();   
     $.when($.ajax({
@@ -43,7 +43,7 @@ function currentWeather(){
             $('#weatherBox').text(parseInt(currentTemp) + String.fromCharCode(176));
         },
         error: function() {
-            var weatherError = $('<div>').text('- -°'); 
+            var weatherError = $('<div>').text('- -°').addClass('errorWeather'); 
             $('.weatherSpinner').remove();
             $('#weatherBox').append(weatherError);
         }
@@ -54,8 +54,8 @@ function currentWeather(){
             url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+weatherLatitude+','+weatherLongitude+'&key='+key,
             success: function(result) {
                 console.log('google geocode', result);
-                var city = result.results[0].address_components[3].long_name;
-                var state = result.results[0].address_components[5].short_name;
+                var city = result.results[0].address_components[1].long_name;
+                var state = result.results[0].address_components[3].short_name;
                 var cityDiv = $('<div>').text(city+', '+state).addClass('cityName');                
                 $('#weatherBox').append(cityDiv);
             }

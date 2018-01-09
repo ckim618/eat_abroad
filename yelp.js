@@ -92,6 +92,7 @@ function displayYelp(response) {
     $('#firstPage').fadeOut(500);
         function yelpAppear(){
             var googleMaps = $('<div>').attr('id','googleMaps');
+            $('.hideButton').removeClass('hideButton');
             $('.carousel').removeClass('hidden');
             $('.yelpPic1').attr('src', yelpPicture1);
             $('.yelpText1').text(yelpName); 

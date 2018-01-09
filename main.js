@@ -57,7 +57,9 @@ function applyClickHandlers() {
 function returnButton() {
     $('#weatherBox').css('display', 'flex');
     $('#firstPage').css('display', 'flex');
-    $('.row, .returnButton, #googleMaps').remove();
+    $('.carousel').addClass('hidden');
+    $('.returnButton').addClass('hideButton');
+    $('.row, #googleMaps').remove();
     pickedCuisine = pickRandomLocation(locations);
     putPickedPlaceData(pickedCuisine);
     moveUnderline();
