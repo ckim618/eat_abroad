@@ -1,121 +1,85 @@
+@font-face {
+    font-family: 'dense';
+    src: url(./fonts/Dense-Regular.otf);
+}
+
 body {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+    font-family: 'dense';
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
 }
 
-#weatherBox {
-    color: whitesmoke;
-    display: inline-block;
-    height: 60px;
-    font-size: 25px;
-    opacity: 0.9;
-    width: 10%;
-    text-align: center;
-    vertical-align: middle;
-    text-shadow: 2px 2px black;
-    padding-top: 10px;
-    padding-right: 50px;
-    float: right;
-}
-
-#textContainer {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    position: fixed;
-    top: 50%;
-    width:100%;
-}
-
-#middleText {
-    text-align: center;
-    color:floralwhite;
-    font-size:70px;
-    font-weight:500;
-    text-shadow: 4px 4px black;
-}
-
-#location{
-    display: inline-block;
-}
-
-#foodButton {
-    text-align: center;
-    display: block;
-    margin: auto;
-    height: 40px;
-}
-
-#mainPage {
-    height:100vh;
-    max-width:100vw;
-}
-
-#yelpInfo {
-    text-align: center;
-    display: inline-flex;
-    flex-flow: wrap;
-    justify-content: center;
-    align-items: baseline;
-    height: 350px;
-    width: 550px;
-    top: 30px;
-    margin-left: 192px;
-    background-color: darkred;
-    float: left;
-    position: relative;
-    border-radius: 10px;
-    color: white;
-    opacity: 0.9;
-    padding: 0;
-}
-#businessName {
-    font-size:50px;
-    width: 100%;
-}
-#price {
-    font-size: 40px;
-    line-height: 40px;
-    transform: translateY(10px);
-    width: 30%
-}
-#businessPhone {
-    width: 100%;
-    font-size: 20px;
-}
 #businessAddress {
     width:100%;
-    font-size: 30px;
-}
-#goToYelp {
-    color: black;
+    font-size: 3rem;
 }
 
-#yelpPicture {
+.businessContainer {
+    color: whitesmoke;
+    width: 15%;
+}
+
+#businessName {
+    font-size: 3rem;
+    width: 100%;
+}
+
+#businessPhone {
+    width: 100%;
+    font-size: 2rem;
+}
+
+.buttonContainer {
+    width: 60%;
+    margin: 0 auto;
+    color: whitesmoke;
+}
+
+  /* Had to override width of dots from bootstrap */
+.carouselDots {
+    width: 15px !important;
+}
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    margin: auto;
+}
+
+.carouselPic {
+  width: 460px;
+  height: 345px !important;
+}
+
+.clock {
+    font-size: 7em;
+    text-align: center;
+    text-shadow: 4px 4px black;
+    color: #fff;
     display: inline-block;
-    height: 350px;
-    width: 500px;
-    max-height: 350px;
-    max-width: 500px;
-    position: relative;
-    top: 30px;
-    float: right;
-    border-radius: 10px;
-    opacity: 0.9;
-    overflow: hidden;
-    padding: 0;
+    position: fixed;
+    top: 27%;
+    width: 100%;
 }
-#googleMaps {
-    height: 45%;
-    width: 80%;
-    margin-left: 10%;
-    transform: translateY(20%);
-    border-radius:5px;
-    opacity:0.92;
+
+.cityName {
+    margin-left: 10px;
 }
-/*Helper Class*/
-.hideOverflow {
-    overflow-y: hidden;
+
+#countryButton {
+    height: 45px;
+    font-size: 2rem;
+    text-shadow: 2px 2px 3px black;
 }
+
+#countryButton:hover {
+    cursor: pointer;
+}
+
+.errorWeather:hover {
+    cursor: pointer;
+}
+
 #firstPage {
     align-items: center;
     height: 100%;
@@ -131,153 +95,365 @@ body {
     width: 100%;
 }
 
-.clock {
-    font-size: 7em;
-    text-align: center;
-    text-shadow: 4px 4px black;
-    color: #fff;
+#foodButton {
+    margin-right: 15px;
+    height: 45px;
+    font-size: 2rem;
+    text-shadow: 2px 2px 3px black;
+}
+
+#foodButton:hover{
+    cursor: pointer;
+}
+
+#googleMaps {
+    height: 45%;
+    width: 40%;
+    margin-left: 5%;
+    border-radius:5px;
+    opacity:0.92;
+}
+
+#goToYelp {
+    color: white;
+    width: 35%;
+    font-size: 2rem;
+    text-shadow: 2px 2px 3px black;
+}
+
+/*Helper Class*/
+.hideOverflow {
+    overflow-y: hidden;
+}
+
+.hideButton {
+    display: none;
+}
+
+img {
+    image-rendering: pixelated;
+}
+
+li {
     display: inline-block;
+    width: 25%;
+    padding: .75rem 0;
+    margin: 0;
+    text-decoration: none;
+} 
+
+#location{
+    display: inline-block;
+}
+
+#mainPage {
+    height:100vh;
+    max-width:100vw;
+    background-color: rgba(0,0,0,0.3) !important;
+}
+
+#middleText {
+    text-align: center;
+    color:floralwhite;
+    font-size:5em;
+    font-weight:500;
+    text-shadow: 4px 4px black;
+}
+
+.picThirds {
+    image-rendering: initial;
+    height: 35vh;
+    margin: 4%;
+}
+
+.picThirds:hover {
+    cursor: pointer;
+}
+
+#price {
+    font-size: 4rem;
+    line-height: 40px;
+    transform: translateY(10px);
+
+}
+
+.returnButton {
+    height: 5%;
+    bottom: 2%;
+    font-size: 2.5rem;
+    color: whitesmoke;
+}
+
+.returnButton:hover {
+    cursor: pointer;
+}
+
+.returnButtonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.reviewCount {
+    font-size: 2.3rem;
+}
+
+.starContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#underline {
+    height: .5rem;
+    width: 15%;
+    margin: 0 0 0 29%;
+    background: whitesmoke;
+    border: none;
+    transition: .3s ease-in-out;
+  }
+#weatherBox {
+    color: whitesmoke;
+    font-size: 25px;
+    opacity: 0.9;
+    text-shadow: 2px 2px 3px black;
+    padding: 10px 25px 0 10px;
+    display: flex;
+}
+
+#weatherIcon {
+    position: absolute;
+    height: 30px;
+    top: 10px;
+}
+
+#textContainer {
+    font-family: "dense";
     position: fixed;
-    top: 27%;
-    width: 100%;
+    top: 45%;
+    width:100%;
+}
+
+ul {
+    text-align: center;
+    padding: 0;
+}  
+
+#yelpInfo {
+    text-align: center;
+    display: inline-flex;
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: baseline;
+    background-color: darkred;
+    border-radius: 10px;
+    color: white;
+    opacity: 0.9;
+    padding: 0;
+    margin: 15px;
+}
+
+#yelpPicture {
+    height: 40vh;
+    border-radius: 10px;
+    opacity: 0.9;
+    overflow: hidden;
+    padding: 0;
+    margin: 15px;
+}
+
+.yelpInfoContainer {
+    display: flex;  
+    justify-content: center;
+    margin: 10px;
+  }
+  .yelpStar1 {
+    height: 25px;
+    width: 100px;
+    margin-right: 10px;    
+  }
+  .yelpPhone, .yelpAddress {
+      font-size: 2.5rem;
+  }
+  .yelpText1, .reviewCount, .yelpPhone, .yelpAddress {
+    text-shadow: 1px 1px black;
+  }
+
+
+/******************************************
+*            Media Query                  *
+******************************************/
+
+@media only screen and (max-width: 750px) {
+    .buttonContainer {
+        width: 80%
+    } 
 }
 
 @media only screen and (max-width: 650px) {
-    body {
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
-    }
-
+    .buttonContainer {
+        width: 100%;
+    } 
     .clock {
-        font-size: 3em;
-        text-align: center;
-        text-shadow: 4px 4px black;
-        color: #fff;
-        left: 0%;
+        font-size: 6em;
     }
-
-    #middleText {
-        text-align: center;
-        color: floralwhite;
-        font-size: 40px;
-        text-shadow: 4px 4px black;
-        font-weight: 500;
+    #foodButton, #countryButton {
+        font-size: 1.6rem;        
     }
-
-    #foodButton {
-        text-align: center;
-        font-size: 12px;
-        display: block;
-        margin: 3% auto;
-        height: 40px;
-    }
-
-    #textContainer {
-        font-family: 'Khula', sans-serif;
-    }
-
-    #mainPage {
-        height: 100vh;
-        max-width: 100vw;
-    }
-
-    #yelpInfo {
-        all: unset;
-        color: white;
-        opacity: 0.9;
-        font-size: 28px;
-    }
-
     #goToYelp {
-        margin-left: 30%;
-        margin-bottom: 1%;
-        color: #fff;
+        font-size: 2rem;
+        width: 40%;
     }
-
-    #yelpInfo > div {
-        padding-left: 1%;
-        background-color: darkred;
-    }
-    #price {
-        transform: translateY(0);
-        line-height: 30px;
-        font-size: 30px;
-        width: 100%;
-    }
-    #businessName {
-        font-size: 30px;
-    }
-
-    #businessPhone {
-        width: 100%;
-        font-size: 18px;
-    }
-
-    #businessAddress {
-        width: 100%;
-        font-size: 25px;
-    }
-
-    #yelpPicture {
-        all: unset;
-        padding: 0;
-        opacity: 0.9;
-    }
-
-    #googleMaps {
-        height: 37%;
-        width: 100%;
-        margin: 0;
-        transform: translateY(-2%);
-        border-radius: 5px;
-        opacity: 0.92;
-    }
-
-    #firstPage {
-        align-items: center;
-        height: 100%;
-        justify-content: center;
-        display: flex;
-        position: absolute;
-        left: 50%;
-    }
-
-    #food {
-        all: unset;
-        background-size: contain;
-        width: 75%;
-        height: 25%;
-        margin-left: 12%;
-        margin-bottom: 1%;
-        box-sizing: border-box;
-        border: 6px solid white;
-    }
-
-    #location {
-        display: inline-block;
-    }
-
     #weatherBox {
-        all: unset;
-        color: whitesmoke;
-        font-size: 25px;
-        opacity: 0.9;
-        text-align: center;
-        text-shadow: 2px 2px black;
-        vertical-align: middle;
-        padding-top: 10px;
-        padding-right: 1px;
-        margin-right: 48px;
-        float: right;
+        padding-right: 25px;
+        padding-left: 10px;
     }
-    .clock {
-        transform: translateY(80px);
-    }
-    .clockHide {
+    
+}
 
+@media only screen and (max-width: 500px) {
+    #middleText {
+        font-size: 4.5em;
+    } 
+}
+
+@media only screen and (max-width: 420px) {
+    .row {
+        all: unset;
+    }
+    #yelpInfo, #yelpPicture {
+        margin: 0;
+        height: 30%;
+        border-radius: 0px;
+    }
+    #googleMaps {
+        transform: translateY(0%);
+        margin-left: 0;
+        border-radius: 0;
+        height: 35%;
+        width: 100%
+    }
+    #middleText {
+        font-size: 4.5rem;
+    }
+   
+    #weatherIcon {
+        margin-left: 13px;
+    }
+    #weatherBox {
+        padding-left: 10px;
+    }
+    .returnButton {
+        height: 5%;
+        width: 100%;
+        position: initial;
+        margin: auto;
+    }
+}
+@media only screen and (max-width: 350px) {
+    #foodButton, #countryButton {
+        font-size: 1.4rem;        
     }
 }
 
+/* Did Not Create, used codepen and found code to add loading animation while ajax call is running */
+.cs-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .cs-loader-inner {
+    
+    top: 50%;
+    position: absolute;
+    width: calc(100% - 0px);
+    color: #FFF;
+    padding: 0 100px;
+    text-align: center;
+  }
+  
+  .cs-loader-inner label {
+    font-size: 20px;
+    opacity: 0;
+    display:inline-block;
+  }
+  
+  @keyframes dots {
+    0% {
+      opacity: 0;
+      transform: translateX(-300px);
+    }
+    33% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+    66% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(300px);
+    }
+  }
+  
+  @-webkit-keyframes dots {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateX(-300px);
+    }
+    33% {
+      opacity: 1;
+      -webkit-transform: translateX(0px);
+    }
+    66% {
+      opacity: 1;
+      -webkit-transform: translateX(0px);
+    }
+    100% {
+      opacity: 0;
+      -webkit-transform: translateX(300px);
+    }
+  }
+  
+  .cs-loader-inner label:nth-child(6) {
+    -webkit-animation: dots 3s infinite ease-in-out;
+    animation: dots 3s infinite ease-in-out;
+  }
+  
+  .cs-loader-inner label:nth-child(5) {
+    -webkit-animation: dots 3s 100ms infinite ease-in-out;
+    animation: dots 3s 100ms infinite ease-in-out;
+  }
+  
+  .cs-loader-inner label:nth-child(4) {
+    -webkit-animation: dots 3s 200ms infinite ease-in-out;
+    animation: dots 3s 200ms infinite ease-in-out;
+  }
+  
+  .cs-loader-inner label:nth-child(3) {
+    -webkit-animation: dots 3s 300ms infinite ease-in-out;
+    animation: dots 3s 300ms infinite ease-in-out;
+  }
+  
+  .cs-loader-inner label:nth-child(2) {
+    -webkit-animation: dots 3s 400ms infinite ease-in-out;
+    animation: dots 3s 400ms infinite ease-in-out;
+  }
+  
+  .cs-loader-inner label:nth-child(1) {
+    -webkit-animation: dots 3s 500ms infinite ease-in-out;
+    animation: dots 3s 500ms infinite ease-in-out;
+  }
 
 
+
+
+ 

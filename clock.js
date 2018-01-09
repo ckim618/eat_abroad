@@ -5,7 +5,7 @@
  * @calls: {none}
  */
 
-$(document).ready(function startTime() {
+function startTime() {
     var today = new Date();
     var hour = today.getHours();
     var minute = today.getMinutes();
@@ -28,4 +28,5 @@ $(document).ready(function startTime() {
         }
         return i;
     }
-});
+};
+

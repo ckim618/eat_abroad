@@ -1,7 +1,14 @@
+var businessUrl;
 var yelpName;
-var yelpPicture;
+var yelpPicture1;
+var yelpPicture2;
+var yelpPicture3;
 var yelpAddress;
 var yelpInfo;
+var yelpOpen;
+var yelpReviewCount;
+var yelpBusinessId;
+
 
 /***************************************************************************************************
  * yelpCall - Uses Yelp API to get response data from a search based on the random country selected on main page
@@ -11,21 +18,32 @@ var yelpInfo;
  */
 
 function yelpCall() {
+    var key = 'Bearer N6_WFXHCeAWzeFBJvljs8lgptMrgkJoakrMe8wiS04dihDrsNiFWu4rWc1_5X7HzcV-tbq9L2lUOQ5qPNYloCRoexh57VDFuaaVG7p3MnlQEQ1bG59HP3vqSoSLcWXYx';
     var proxy = 'https://cors-anywhere.herokuapp.com/';
-    var yelpApi = 'https://api.yelp.com/v3/businesses/search?term=' + pickedCuisine.foodType + '&latitude=' + userLocation_result.lat +'&longitude=' + userLocation_result.lng +'&Authorization=Bearer N6_WFXHCeAWzeFBJvljs8lgptMrgkJoakrMe8wiS04dihDrsNiFWu4rWc1_5X7HzcV-tbq9L2lUOQ5qPNYloCRoexh57VDFuaaVG7p3MnlQEQ1bG59HP3vqSoSLcWXYx';
-    $.ajax({
-        dataType: 'json',
-        method: 'get',
-        url: proxy + yelpApi,
-        headers: {Authorization: 'Bearer N6_WFXHCeAWzeFBJvljs8lgptMrgkJoakrMe8wiS04dihDrsNiFWu4rWc1_5X7HzcV-tbq9L2lUOQ5qPNYloCRoexh57VDFuaaVG7p3MnlQEQ1bG59HP3vqSoSLcWXYx'},
-        success: function (response) {
-            console.log('Yelp response worked', response);
-            randomizeBusiness(response);
-            displayYelp();
-
-            $('body').removeClass('hideOverflow');
-        }
-    });
+    var yelpApi = 'https://api.yelp.com/v3/businesses/search?term=' + pickedCuisine.foodType + '&latitude=' + userLocation_result.lat +'&longitude=' + userLocation_result.lng +'&Authorization='+key;
+    $.when(
+        $.ajax({
+            dataType: 'json',
+            method: 'get',
+            url: proxy + yelpApi,
+            headers: {Authorization: key},
+            success: function (response) {
+                console.log('Yelp response worked', response);
+                randomizeBusiness(response);
+                $('body').removeClass('hideOverflow');
+                $('.clock, #weatherBox').css('display', 'none');
+            }
+        })).then(function() {
+            $.ajax({
+                dataType: 'json',
+                method: 'get',
+                url: proxy + businessUrl,
+                headers: {Authorization: key},                
+                success: function(response) {
+                    displayYelp(response);                    
+                }
+            })
+        })
 }
 
 /***************************************************************************************************
@@ -39,8 +57,10 @@ function randomizeBusiness(response) {
     var randomIndex = Math.floor(Math.random() * 6);
     var pickedBusiness = response.businesses[randomIndex];
     console.log('Random business pick was', pickedBusiness);
-    yelpPicture = pickedBusiness.image_url;
+    yelpBusinessId = pickedBusiness.id;
     yelpName = pickedBusiness.name;
+    yelpReviewCount = pickedBusiness.review_count;
+    yelpOpen = pickedBusiness.is_closed;
     var addressLine1 = pickedBusiness.location.display_address[0];
     if (pickedBusiness.location.display_address.length == 3) {
         addressLine1 += ' ' + pickedBusiness.location.display_address[1];
@@ -48,32 +68,45 @@ function randomizeBusiness(response) {
     if (pickedBusiness.location.display_address.length > 1) {
         var addressLine2 = pickedBusiness.location.display_address[pickedBusiness.location.display_address.length-1];
     }
-    yelpAddress = addressLine1 + '</br>' + addressLine2;
+    yelpAddress = addressLine1 + ' ' + addressLine2;
     yelpInfo = pickedBusiness;
+    businessUrl = 'https://api.yelp.com/v3/businesses/'+yelpBusinessId+'?Authorization=Bearer F2KCtecYPBzx2FMjRUtHusXo5gthr7cXponRHi3mFdDty8K3BliD-Cn09sMR5tP2i5SD9kB8U3z7DOxq_5XMgbv24jGzCUgPDALtD6qrU0WHJOUXaMuAdsEiruJOWnYx';    
 }
 
 /***************************************************************************************************
  * displayYelp - After button on first page is clicked, creates divs to append on screen
- * @param: {none}
+ * @param: {response}
  * @returns: {none}
- * @calls: {yelpAppear}
+ * @calls: {yelpAppear, addDescription}
  */
 
-function displayYelp() {
-    $('#firstPage').fadeOut(1000);
+function displayYelp(response) {
+    console.log('Display to yelp response', response);
+    var yelpPhoto = response.photos;
+    var yelpPhone = response.display_phone;
+    var picClass = 'picThirds col-md-3 col-sm-3 col-xs-12';
+    yelpPicture1 = yelpPhoto[0];
+    yelpPicture2 = yelpPhoto[1];
+    yelpPicture3 = yelpPhoto[2];
+
+    $('#firstPage').fadeOut(500);
         function yelpAppear(){
-            var googleMaps = $('<div>').attr('id','googleMaps').addClass('col-xs-12');
-            var yelpInfo = $('<div>').attr('id','yelpInfo').addClass('col-xs-12');
-            var pictureBox = $('<div>').attr('id','yelpPicture').addClass('col-xs-12');
-            // yelpPicture = pickedBusiness.image_url;
-            var foodPicture =$('<img>').attr('src',yelpPicture).attr('id','food');
-            $('#mainPage').append(yelpInfo, pictureBox);
-            $('#yelpPicture').append(foodPicture);
-            $('#mainPage').append(googleMaps);
-            addDescription();
+            var googleMaps = $('<div>').attr('id','googleMaps');
+            $('.hideButton').removeClass('hideButton');
+            $('.carousel').removeClass('hidden');
+            $('.yelpPic1').attr('src', yelpPicture1);
+            $('.yelpText1').text(yelpName); 
+            $('.yelpStar1').attr({'id': 'starRating', 'src': 'images/'+ yelpInfo.rating+ 'star.png'});
+            $('.yelpReview1').addClass('reviewCount').text(yelpReviewCount + ' Reviews');            
+            $('.yelpPic2').attr('src', yelpPicture2);
+            $('.yelpPhone').text('Phone: ' + yelpPhone);
+            $('.yelpPic3').attr('src', yelpPicture3);
+            $('.yelpAddress').text(yelpAddress);            
+            $('#mainPage').append(googleMaps); 
         }
-    setTimeout(yelpAppear,1000);
-    setTimeout(initMap,1000);
+    $('.cs-loader').hide();
+    setTimeout(yelpAppear,500);
+    setTimeout(initMap,500);
 }
 
 /***************************************************************************************************
@@ -87,21 +120,23 @@ function addDescription(){
     var $businessName = $('<div>').attr('id','businessName');
     var $businessAddress = $('<div>').attr('id', 'businessAddress');
     var $businessPhone = $('<div>').attr('id', 'businessPhone');
-    var starContainer = $('<div>');
-    var $stars = $('<img>').attr({'id': 'starRating', 'src': 'images/'+ yelpInfo.rating+ 'star.png'});
-    starContainer.append($stars);
-    var $dollar = $('<div>').attr('id', 'price').text(yelpInfo.price);
+    var $stars = $('<img>').attr({'id': 'starRating', 'src': 'images/'+ yelpInfo.rating+ 'star.png'});    
+    var starContainer = $('<div>').addClass('starContainer');
+    var reviewCount = $('<div>').addClass('reviewCount').text(yelpReviewCount + ' Reviews');
+    var businessContainer = $('<div>').addClass('businessContainer');
+    var completedBusinessContainer = $(businessContainer).append($businessName, starContainer, $businessPhone, $businessAddress, $goToYelpButton);
+    
+    starContainer.append($stars, reviewCount);
     $businessName.text(yelpName);
     $businessAddress.html(yelpAddress);
     $businessPhone.text(yelpInfo.display_phone);
     var $goToYelpButton = $('<button>', {
-        class: 'btn btn-danger',
+        class: 'btn btn-success',
         attr: {'id': 'goToYelp'},
         click: directToYelp,
-        text: 'Check out on Yelp!'
+        text: 'Check Out On Yelp!'
     });
-    $('#yelpInfo').append($businessName, starContainer, $dollar, $businessPhone, $businessAddress, $goToYelpButton);
-    $('#food').attr('src',yelpPicture);
+    $('#googleMaps').append(completedBusinessContainer);
 }
 
 /***************************************************************************************************
@@ -114,3 +149,11 @@ function addDescription(){
 function directToYelp() {
     window.open(yelpInfo.url);
 }
+
+
+// var returnButton = $('<button>').addClass('col-xs-12 btn btn-primary returnButton').text('Try Another Country');            
+// // var googleMaps = $('<div>').attr('id','googleMaps').addClass('col-xs-12 col-sm-12 col-md-12');
+// // var row = $('<div>').addClass('row');
+// // var yelpInfo = $('<div>').attr('id','yelpInfo').addClass('col-xs-12 col-sm-5 col-md-5');
+// // var pictureBox = $('<div>').attr('id','yelpPicture').addClass('col-xs-12 col-sm-5 col-md-5');
+// // var foodPicture =$('<img>').attr('src',yelpPicture1).attr('id','food');
