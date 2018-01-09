@@ -218,10 +218,6 @@ ul {
     justify-content: center;
 }
 
-#starRating {
-    width: 60%
-}
-
 .returnButton {
     height: 5%;
     width: 19%;
@@ -403,6 +399,33 @@ ul {
     -webkit-animation: dots 3s 500ms infinite ease-in-out;
     animation: dots 3s 500ms infinite ease-in-out;
   }
-
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      margin: auto;
+  }
+  .carouselPic {
+      width: 460px;
+      height: 345px !important;
+  }
+  /* Had to override width of dots from bootstrap */
+  .carouselDots {
+      width: 15px !important;
+  }
+  .yelpInfoContainer {
+    display: flex;  
+    justify-content: center;
+    margin: 10px;
+  }
+  .yelpStar1 {
+    height: 25px;
+    width: 100px;
+    margin-right: 10px;    
+  }
+  .yelpPhone, .yelpAddress {
+      font-size: 2.5rem;
+  }
+  .yelpText1, .reviewCount, .yelpPhone, .yelpAddress {
+    text-shadow: 1px 1px black;
+  }
 
 

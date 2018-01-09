@@ -68,7 +68,7 @@ function randomizeBusiness(response) {
     if (pickedBusiness.location.display_address.length > 1) {
         var addressLine2 = pickedBusiness.location.display_address[pickedBusiness.location.display_address.length-1];
     }
-    yelpAddress = addressLine1 + '</br>' + addressLine2;
+    yelpAddress = addressLine1 + ' ' + addressLine2;
     yelpInfo = pickedBusiness;
     businessUrl = 'https://api.yelp.com/v3/businesses/'+yelpBusinessId+'?Authorization=Bearer F2KCtecYPBzx2FMjRUtHusXo5gthr7cXponRHi3mFdDty8K3BliD-Cn09sMR5tP2i5SD9kB8U3z7DOxq_5XMgbv24jGzCUgPDALtD6qrU0WHJOUXaMuAdsEiruJOWnYx';    
 }
@@ -83,21 +83,25 @@ function randomizeBusiness(response) {
 function displayYelp(response) {
     console.log('Display to yelp response', response);
     var yelpPhoto = response.photos;
+    var yelpPhone = response.display_phone;
     var picClass = 'picThirds col-md-3 col-sm-3 col-xs-12';
     yelpPicture1 = yelpPhoto[0];
     yelpPicture2 = yelpPhoto[1];
     yelpPicture3 = yelpPhoto[2];
+
     $('#firstPage').fadeOut(500);
         function yelpAppear(){
-            var picContainer = $('<div>').addClass('picContainer');
-            var picRow = $('<div>').addClass('picrow');
-            var pic1 = $('<img>').attr('src', yelpPicture1).addClass(picClass);
-            var pic2 = $('<img>').attr('src', yelpPicture2).addClass(picClass);
-            var pic3 = $('<img>').attr('src', yelpPicture3).addClass(picClass);
-            var completedRow = $(picRow).append(pic1, pic2, pic3);
-            var completedContainer = $(picContainer).append(completedRow);
-            var googleMaps = $('<div>').attr('id','googleMaps').addClass('col-xs-12 col-sm-12 col-md-12');
-            $('#mainPage').append(completedContainer, googleMaps); 
+            var googleMaps = $('<div>').attr('id','googleMaps');
+            $('.carousel').removeClass('hidden');
+            $('.yelpPic1').attr('src', yelpPicture1);
+            $('.yelpText1').text(yelpName); 
+            $('.yelpStar1').attr({'id': 'starRating', 'src': 'images/'+ yelpInfo.rating+ 'star.png'});
+            $('.yelpReview1').addClass('reviewCount').text(yelpReviewCount + ' Reviews');            
+            $('.yelpPic2').attr('src', yelpPicture2);
+            $('.yelpPhone').text('Phone: ' + yelpPhone);
+            $('.yelpPic3').attr('src', yelpPicture3);
+            $('.yelpAddress').text(yelpAddress);            
+            $('#mainPage').append(googleMaps); 
         }
     $('.cs-loader').hide();
     setTimeout(yelpAppear,500);
