@@ -10,7 +10,7 @@ var weatherLongitude;
  * @returns: {none}
  * @calls: {initialize}
  */
-$(document).ready(function(){
+$(document).ready(function () {
     initialize();
 });
 
@@ -23,14 +23,14 @@ $(document).ready(function(){
  */
 
 function initialize() {
-    currentWeatherLocation();    
+    currentWeatherLocation();
     $('.cs-loader').hide();
     applyClickHandlers();
     pickedCuisine = pickRandomLocation(locations);
     putPickedPlaceData(pickedCuisine);
     startTime();
     moveUnderline();
-    $(window).on('load',function() {
+    $(window).on('load', function () {
         currentWeather();
     })
 }
@@ -44,8 +44,10 @@ function initialize() {
  */
 function applyClickHandlers() {
     $('#foodButton').on('click', geoLocateCall);
-    $('#countryButton').on('click', pickAnotherCountry)
+    $('#countryButton').on('click', pickAnotherCountry);
+    //Since both butons below are created dynamically, must delegate event.
     $(document).on('click', '.returnButton', returnButton);
+    $(document).on('click', '.yelpButton', yelpButton);
 }
 
 /***************************************************************************************************
@@ -58,8 +60,7 @@ function returnButton() {
     $('#weatherBox').css('display', 'flex');
     $('#firstPage').css('display', 'flex');
     $('.carousel').addClass('hidden');
-    $('.returnButton').addClass('hideButton');
-    $('.row, #googleMaps').remove();
+    $('.returnButton, .row, #googleMaps, .yelpButton').remove();
     pickedCuisine = pickRandomLocation(locations);
     putPickedPlaceData(pickedCuisine);
     moveUnderline();
@@ -74,10 +75,10 @@ function returnButton() {
  * @calls: 
  */
 function moveUnderline() {
-    $('#foodButton').hover(function() {
+    $('#foodButton').hover(function () {
         $('#underline').css('margin-left', '29%');
     });
-    $('#countryButton').hover(function() {
+    $('#countryButton').hover(function () {
         $('#underline').css('margin-left', '56%');
     });
 }
@@ -91,4 +92,8 @@ function moveUnderline() {
 function weatherSpinner() {
     var iDiv = $('<i>').addClass('weatherSpinner fa fa-spinner fa-spin fa-lg fa-fw');
     $('#weatherBox').append(iDiv);
+}
+
+function yelpButton() {
+    window.open(yelpURL);        
 }

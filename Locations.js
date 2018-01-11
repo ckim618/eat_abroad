@@ -1,5 +1,4 @@
-var locations = [
-    {
+var locations = [{
         title: 'The United States',
         imgSrc: './images/America.jpg',
         foodType: 'American'
@@ -92,7 +91,7 @@ var locations = [
  * @calls: {none}
  */
 
-function newLocation(title,src,food) {
+function newLocation(title, src, food) {
     var newPlace = {};
     newPlace.title = title;
     newPlace.imgSrc = src;
@@ -106,7 +105,7 @@ function newLocation(title,src,food) {
  * @returns: {none}
  * @calls: Google geolocation API
  */
-function geoLocateCall(){
+function geoLocateCall() {
     $('body').addClass('hideOverflow');
     $('#firstPage').fadeOut(750);
     $('.clock').addClass('clockHide');
@@ -114,11 +113,11 @@ function geoLocateCall(){
     $('#foodButton').unbind();
     $('.cs-loader').show();
     $.ajax({
-        dataType:'json',
+        dataType: 'json',
         method: 'post',
         wifiAccessPoints: [],
         url: 'https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyD2P0kN9ffis_AOZUH5jrHNYdwQ6oU7wI4',
-        success: function(result){
+        success: function (result) {
             console.log('geolocation api running at', result);
             userLocation_result = result.location;
             yelpCall();
@@ -149,7 +148,7 @@ function pickRandomLocation(locationsArray) {
 function pickAnotherCountry() {
     pickedCuisine = pickRandomLocation(locations);
     putPickedPlaceData(pickedCuisine);
- }
+}
 
 /***************************************************************************************************
  * putPickedPlaceData - Adds randomly selected location to DOM
@@ -160,6 +159,5 @@ function pickAnotherCountry() {
 
 function putPickedPlaceData(pickedPlace) {
     $('#location').text(pickedPlace.title);
-    $('body').css("background", "url('"+pickedPlace.imgSrc+"')");
+    $('#mainPage').css("background", "url('" + pickedPlace.imgSrc + "')");
 }
-
