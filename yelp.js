@@ -104,57 +104,22 @@ function displayYelp(response) {
         $('.hideButton').removeClass('hideButton');
         $('.carousel').removeClass('hidden');
         $('.yelpPic1').attr('src', yelpPicture1);
-        $('.yelpText1').text(yelpName);
+        $('.yelpText').text(yelpName);
         $('.yelpStar1').attr({
             'id': 'starRating',
             'src': 'images/' + yelpInfo.rating + 'star.png'
         });
         $('.yelpReview1').addClass('reviewCount').text(yelpReviewCount + ' Reviews');
         $('.yelpPic2').attr('src', yelpPicture2);
-        $('.yelpPhone').text('Phone: ' + yelpPhone);
+        $('.yelpAddress').text(yelpAddress);        
         $('.yelpPic3').attr('src', yelpPicture3);
-        $('.yelpAddress').text(yelpAddress);
+        $('.yelpPhone').text('Phone: ' + yelpPhone);        
         $('#mainPage').append(googleMaps, completedReturnButton);
     
     }
     $('.cs-loader').hide();
     setTimeout(yelpAppear, 500);
     setTimeout(initMap, 500);
-}
-
-/***************************************************************************************************
- * addDescription - Appends all info of randomly picked business
- * @param: {none}
- * @returns: {none}
- * @calls: {none}
- */
-
-function addDescription() {
-    var $businessName = $('<div>').attr('id', 'businessName');
-    var $businessAddress = $('<div>').attr('id', 'businessAddress');
-    var $businessPhone = $('<div>').attr('id', 'businessPhone');
-    var $stars = $('<img>').attr({
-        'id': 'starRating',
-        'src': 'images/' + yelpInfo.rating + 'star.png'
-    });
-    var starContainer = $('<div>').addClass('starContainer');
-    var reviewCount = $('<div>').addClass('reviewCount').text(yelpReviewCount + ' Reviews');
-    var businessContainer = $('<div>').addClass('businessContainer');
-    var completedBusinessContainer = $(businessContainer).append($businessName, starContainer, $businessPhone, $businessAddress, $goToYelpButton);
-
-    starContainer.append($stars, reviewCount);
-    $businessName.text(yelpName);
-    $businessAddress.html(yelpAddress);
-    $businessPhone.text(yelpInfo.display_phone);
-    var $goToYelpButton = $('<button>', {
-        class: 'btn btn-success',
-        attr: {
-            'id': 'goToYelp'
-        },
-        click: directToYelp,
-        text: 'Check Out On Yelp!'
-    });
-    $('#googleMaps').append(completedBusinessContainer);
 }
 
 /***************************************************************************************************
@@ -167,11 +132,3 @@ function addDescription() {
 function directToYelp() {
     window.open(yelpInfo.url);
 }
-
-
-// var returnButton = $('<button>').addClass('col-xs-12 btn btn-primary returnButton').text('Try Another Country');            
-// // var googleMaps = $('<div>').attr('id','googleMaps').addClass('col-xs-12 col-sm-12 col-md-12');
-// // var row = $('<div>').addClass('row');
-// // var yelpInfo = $('<div>').attr('id','yelpInfo').addClass('col-xs-12 col-sm-5 col-md-5');
-// // var pictureBox = $('<div>').attr('id','yelpPicture').addClass('col-xs-12 col-sm-5 col-md-5');
-// // var foodPicture =$('<img>').attr('src',yelpPicture1).attr('id','food');

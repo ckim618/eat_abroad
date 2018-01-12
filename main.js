@@ -14,7 +14,6 @@ $(document).ready(function () {
     initialize();
 });
 
-
 /***************************************************************************************************
  * initialize - Runs functions on page initializing
  * @param: {none}
@@ -23,6 +22,7 @@ $(document).ready(function () {
  */
 
 function initialize() {
+    $('.modal').modal('show');
     currentWeatherLocation();
     $('.cs-loader').hide();
     applyClickHandlers();
@@ -90,9 +90,16 @@ function moveUnderline() {
  * @calls: 
  */
 function weatherSpinner() {
-    var iDiv = $('<i>').addClass('weatherSpinner fa fa-spinner fa-spin fa-lg fa-fw');
+    var iDiv = $('<i>').addClass('weatherSpinner fa fa-circle-o-notch fa-spin fa-lg fa-fw');
     $('#weatherBox').append(iDiv);
 }
+
+/***************************************************************************************************
+ * yelpButton - opens new tab to go to current resturant yelp page
+ * @param: {none}
+ * @returns: {none}
+ * @calls: 
+ */
 
 function yelpButton() {
     window.open(yelpURL);        

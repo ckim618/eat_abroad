@@ -109,7 +109,7 @@ function geoLocateCall() {
     $('body').addClass('hideOverflow');
     $('#firstPage').fadeOut(750);
     $('.clock').addClass('clockHide');
-    $('.clockHide, #weatherBox').fadeOut(750);
+    $('.clockHide, #weatherBox, .logo').fadeOut(750);
     $('#foodButton').unbind();
     $('.cs-loader').show();
     $.ajax({
@@ -159,5 +159,5 @@ function pickAnotherCountry() {
 
 function putPickedPlaceData(pickedPlace) {
     $('#location').text(pickedPlace.title);
-    $('#mainPage').css("background", "url('" + pickedPlace.imgSrc + "')");
+    $('body').css("background", "url('" + pickedPlace.imgSrc + "')");
 }

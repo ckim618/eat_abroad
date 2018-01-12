@@ -1,4 +1,4 @@
-# C9.17_hackathon 2
+# Eat Abroad
 
 Hackathon project involving the combination of different data sources into an application or game
 
@@ -18,35 +18,4 @@ Hackathon project involving the combination of different data sources into an ap
 - **Innovative / Transformative** : Did the project do something new and exciting?  Was it bold and tried to do things that haven't been done much.  Did it combine the data sources together in a way that was more useful than either source by itself
 - **Ease of Use / Understanding** : Was it easy to use the application / game, or if it was more complex, was the application or game able to provide you with tutorials or instructions that made understanding it a breeze.
 
-
-### Teams
-- Team 1
-  - Francesca Sinocruz
-  - Prosith Khiev
-  - Krystal Enojado
-  - Peter Woo
-
-- Team 2
-  - Collin Wong
-  - Rebecca Brewster
-  - Jay Ko
-  - Anthony Sorise
-
-- Team 3
-  - Michael Lin
-  - Matt Barnett
-  - Saeed Alavi
-
-- Team 4
-  - Eric Yoon
-  - Brian Kim
-  - Audrian Manly
-  
-- Team 5
-  - Harry Tran
-  - Michael Ahn
-  - Chris Kim
-
-### Deadline: 
-- 7:00PM Wednesday, October 12, 2017
 
