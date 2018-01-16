@@ -30,7 +30,6 @@ function directToYelp() {
  */
 
 function displayYelp(response) {
-    console.log('Display to yelp response', response);
     var yelpPhoto = response.photos;
     var yelpPhone = response.display_phone;
     yelpPicture1 = yelpPhoto[0];
@@ -66,7 +65,7 @@ function displayYelp(response) {
             "width": "100%",
             "height": "60px"
         });
-        $('#mainPage').append(completedMapsContainer, completedReturnButton);            
+        $('#mainPage').append(completedMapsContainer, completedReturnButton);
     }
     $('.cs-loader').hide();
     $('.logo, #weatherBox').show();
@@ -123,13 +122,15 @@ function yelpCall() {
                 Authorization: key
             },
             success: function (response) {
-                console.log('Yelp response worked', response);
                 randomizeBusiness(response);
                 $('body').removeClass('hideOverflow');
                 $('.clock, #weatherBox').hide();
             },
             error: function () {
-                console.log('Failed');
+                $('.cs-loader').hide();
+                setTimeout(function() {
+                    alert('Yelp Failed Please Refresh Page');                    
+                }, 2000);
             }
         })).then(function () {
         $.ajax({

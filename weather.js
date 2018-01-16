@@ -36,7 +36,6 @@ function currentWeather() {
         method: 'get',
         url: proxy + weatherAPI,
         success: function (result) {
-            console.log('weather', result)
             currentUserWeather = result;
             var currentTemp = currentUserWeather.currently.apparentTemperature;
             $('#weatherBox').text(parseInt(currentTemp) + String.fromCharCode(176));
@@ -52,7 +51,6 @@ function currentWeather() {
             method: 'get',
             url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + weatherLatitude + ',' + weatherLongitude + '&key=' + key,
             success: function (result) {
-                console.log('google geocode', result);
                 var city = result.results[0].address_components[3].long_name;
                 var state = result.results[0].address_components[5].short_name;
                 var cityDiv = $('<div>').text(city + ', ' + state).addClass('cityName');

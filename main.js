@@ -21,12 +21,14 @@ $(document).ready(function () {
  * @calls:
  */
 function applyClickHandlers() {
-    $('#foodButton').on('click', geoLocateCall);
+    // $('#foodButton').on('click', geoLocateCall);
     $('#countryButton').on('click', pickAnotherCountry);
     $('.logo').on('click', removeElements);
     //Since both butons below are created dynamically, must delegate event.
     $(document).on('click', '.returnButton', returnButton);
     $(document).on('click', '.yelpButton', yelpButton);
+    $(document).on('click', '#foodButton', geoLocateCall);
+    
 }
 
 
@@ -92,7 +94,6 @@ function removeElements() {
         "border-bottom": ""
     });
     $('.returnButton, .row, #googleMaps, .yelpButton, .returnButtonContainer, .mapsContainer').remove();
-    $('#foodButton').on('click', geoLocateCall);    
     moveUnderline();    
 }
 

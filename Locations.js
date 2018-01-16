@@ -104,7 +104,6 @@ function geoLocateCall() {
         wifiAccessPoints: [],
         url: 'https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyD2P0kN9ffis_AOZUH5jrHNYdwQ6oU7wI4',
         success: function (result) {
-            console.log('geolocation api running at', result);
             userLocation_result = result.location;
             yelpCall();
         }
