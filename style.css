@@ -191,6 +191,10 @@ li {
     font-size: 2rem;
 }
 
+.modal-header {
+    background-color: goldenrod;
+}
+
 #middleText {
     text-align: center;
     color: floralwhite;
@@ -375,15 +379,6 @@ ul {
         padding-right: 25px;
         padding-left: 10px;
     }
-}
-
-@media only screen and (max-width: 500px) {
-    #middleText {
-        font-size: 4.5em;
-    }
-}
-
-@media only screen and (max-width: 650px) {
     .carousel {
         width: 100%;
         margin: 0;
@@ -433,6 +428,13 @@ ul {
         padding-left: 10px;
     }
 }
+
+@media only screen and (max-width: 500px) {
+    #middleText {
+        font-size: 4.5em;
+    }
+}
+
 
 @media only screen and (max-width: 350px) {
     #foodButton,

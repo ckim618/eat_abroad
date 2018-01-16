@@ -21,7 +21,6 @@ $(document).ready(function () {
  * @calls:
  */
 function applyClickHandlers() {
-    // $('#foodButton').on('click', geoLocateCall);
     $('#countryButton').on('click', pickAnotherCountry);
     $('.logo').on('click', removeElements);
     //Since both butons below are created dynamically, must delegate event.
@@ -40,17 +39,18 @@ function applyClickHandlers() {
  */
 
 function initialize() {
-    $('.modal').modal('show');
-    currentWeatherLocation();
-    $('.cs-loader').hide();
-    applyClickHandlers();
-    pickedCuisine = pickRandomLocation(locations);
-    putPickedPlaceData(pickedCuisine);
-    startTime();
-    moveUnderline();
+    pickedCuisine = pickRandomLocation(locations);  
     $(window).on('load', function () {
         currentWeather();
-    })
+    });  
+    $('.modal').modal('show');
+    $('.cs-loader').hide();    
+    applyClickHandlers();    
+    currentWeatherLocation();
+    putPickedPlaceData(pickedCuisine);
+    moveUnderline();    
+    startTime();
+   
 }
 
 /***************************************************************************************************
@@ -76,24 +76,31 @@ function moveUnderline() {
  * @calls: { pickRandomLocation, putPickedPlaceData, currentWeather, geoLocateCall }
  */
 function returnButton() {
+    pickedCuisine = pickRandomLocation(locations); 
+    $('#foodButton').on('click', geoLocateCall);        
     removeElements()
     putPickedPlaceData(pickedCuisine);
     moveUnderline();
-    $('#foodButton').on('click', geoLocateCall);    
-    pickedCuisine = pickRandomLocation(locations);    
 }
 
+/***************************************************************************************************
+ * removeElements - Removes elements to make display looking like first page
+ * @param: {none}
+ * @returns: {none}
+ * @calls: { pickRandomLocation, putPickedPlaceData, currentWeather, geoLocateCall }
+ */
+
 function removeElements() {
-    $('#weatherBox').css('display', 'flex');
-    $('#firstPage').css('display', 'flex');
     $('.carousel').addClass('hidden');
     $('.clock').removeClass('clockHide').css('display', 'inline-block');
-    //Removes black background when going back a page
+    $('#firstPage').css('display', 'flex');    
+    $(' #googleMaps, .mapsContainer, .returnButton, .returnButtonContainer, .row, .yelpButton').remove();
+    //Clears black 
     $('.navContainer').css({
         "background-color": "",
-        "border-bottom": ""
+        "border-bottom": "",
     });
-    $('.returnButton, .row, #googleMaps, .yelpButton, .returnButtonContainer, .mapsContainer').remove();
+    $('#weatherBox').css('display', 'flex');    
     moveUnderline();    
 }
 
