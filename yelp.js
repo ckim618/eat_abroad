@@ -18,8 +18,8 @@ var yelpBusinessId;
  */
 
 function yelpCall() {
-    var key = 'Bearer N6_WFXHCeAWzeFBJvljs8lgptMrgkJoakrMe8wiS04dihDrsNiFWu4rWc1_5X7HzcV-tbq9L2lUOQ5qPNYloCRoexh57VDFuaaVG7p3MnlQEQ1bG59HP3vqSoSLcWXYx';
-    var proxy = 'https://cors-anywhere.herokuapp.com/';
+    var key = 'Bearer F2KCtecYPBzx2FMjRUtHusXo5gthr7cXponRHi3mFdDty8K3BliD-Cn09sMR5tP2i5SD9kB8U3z7DOxq_5XMgbv24jGzCUgPDALtD6qrU0WHJOUXaMuAdsEiruJOWnYx';
+    var proxy = 'http://thingproxy.freeboard.io/fetch/';
     var yelpApi = 'https://api.yelp.com/v3/businesses/search?term=' + pickedCuisine.foodType + '&latitude=' + userLocation_result.lat + '&longitude=' + userLocation_result.lng + '&Authorization=' + key;
     $.when(
         $.ajax({
@@ -29,11 +29,14 @@ function yelpCall() {
             headers: {
                 Authorization: key
             },
-            success: function (response) {
+            success: function(response) {
                 console.log('Yelp response worked', response);
                 randomizeBusiness(response);
                 $('body').removeClass('hideOverflow');
-                $('.clock, #weatherBox').css('display', 'none');
+                $('.clock, #weatherBox').hide();
+            },
+            error: function() {
+                console.log('Failed');
             }
         })).then(function () {
         $.ajax({
@@ -60,12 +63,13 @@ function yelpCall() {
 function randomizeBusiness(response) {
     var randomIndex = Math.floor(Math.random() * 6);
     var pickedBusiness = response.businesses[randomIndex];
-    console.log('Random business pick was', pickedBusiness);
+    var key = 'Bearer F2KCtecYPBzx2FMjRUtHusXo5gthr7cXponRHi3mFdDty8K3BliD-Cn09sMR5tP2i5SD9kB8U3z7DOxq_5XMgbv24jGzCUgPDALtD6qrU0WHJOUXaMuAdsEiruJOWnYx';
+    var addressLine1 = pickedBusiness.location.display_address[0];    
+    
     yelpBusinessId = pickedBusiness.id;
     yelpName = pickedBusiness.name;
     yelpReviewCount = pickedBusiness.review_count;
     yelpURL = pickedBusiness.url;
-    var addressLine1 = pickedBusiness.location.display_address[0];
     if (pickedBusiness.location.display_address.length == 3) {
         addressLine1 += ' ' + pickedBusiness.location.display_address[1];
     }
@@ -74,7 +78,7 @@ function randomizeBusiness(response) {
     }
     yelpAddress = addressLine1 + ' ' + addressLine2;
     yelpInfo = pickedBusiness;
-    businessUrl = 'https://api.yelp.com/v3/businesses/' + yelpBusinessId + '?Authorization=Bearer F2KCtecYPBzx2FMjRUtHusXo5gthr7cXponRHi3mFdDty8K3BliD-Cn09sMR5tP2i5SD9kB8U3z7DOxq_5XMgbv24jGzCUgPDALtD6qrU0WHJOUXaMuAdsEiruJOWnYx';
+    businessUrl = 'https://api.yelp.com/v3/businesses/' + yelpBusinessId + '?Authorization=' + key;
 }
 
 /***************************************************************************************************
@@ -88,7 +92,6 @@ function displayYelp(response) {
     console.log('Display to yelp response', response);
     var yelpPhoto = response.photos;
     var yelpPhone = response.display_phone;
-    var picClass = 'picThirds col-md-3 col-sm-3 col-xs-12';
     yelpPicture1 = yelpPhoto[0];
     yelpPicture2 = yelpPhoto[1];
     yelpPicture3 = yelpPhoto[2];
@@ -118,6 +121,7 @@ function displayYelp(response) {
     
     }
     $('.cs-loader').hide();
+    $('.logo, #weatherBox').show();
     setTimeout(yelpAppear, 500);
     setTimeout(initMap, 500);
 }

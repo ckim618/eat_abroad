@@ -46,7 +46,7 @@ function applyClickHandlers() {
     $('#foodButton').on('click', geoLocateCall);
     $('#countryButton').on('click', pickAnotherCountry);
     //Since both butons below are created dynamically, must delegate event.
-    $(document).on('click', '.returnButton', returnButton);
+    $(document).on('click', '.returnButton, .logo', returnButton);
     $(document).on('click', '.yelpButton', yelpButton);
 }
 

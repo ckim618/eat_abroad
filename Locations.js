@@ -159,5 +159,5 @@ function pickAnotherCountry() {
 
 function putPickedPlaceData(pickedPlace) {
     $('#location').text(pickedPlace.title);
-    $('body').css("background", "url('" + pickedPlace.imgSrc + "')");
+    $('body').css("background", "url('" + pickedPlace.imgSrc + "') no-repeat fixed");
 }
