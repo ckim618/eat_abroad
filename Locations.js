@@ -84,20 +84,6 @@ var locations = [{
         foodType: 'vietnamese'
     },
 ];
-/***************************************************************************************************
- * newLocation - Gets current time and dynamically creates div onto main page
- * @param: {title, src, food} - strings
- * @returns: {none}
- * @calls: {none}
- */
-
-function newLocation(title, src, food) {
-    var newPlace = {};
-    newPlace.title = title;
-    newPlace.imgSrc = src;
-    newPlace.foodType = food;
-    locations.push(newPlace);
-}
 
 /***************************************************************************************************
  * geoLocateCall - calls the Google geolocation API
@@ -127,16 +113,18 @@ function geoLocateCall() {
 }
 
 /***************************************************************************************************
- * pickRandomLocation - Picks random location from locationsArray
- * @param: {locationsArray}
- * @returns: {randomLocation} picks location from array
- * @calls:
+ * newLocation - Gets current time and dynamically creates div onto main page
+ * @param: {title, src, food} - strings
+ * @returns: {none}
+ * @calls: {none}
  */
 
-function pickRandomLocation(locationsArray) {
-    var randomIndex = Math.floor(Math.random() * locationsArray.length);
-    var randomLocation = locationsArray[randomIndex];
-    return randomLocation;
+function newLocation(title, src, food) {
+    var newPlace = {};
+    newPlace.title = title;
+    newPlace.imgSrc = src;
+    newPlace.foodType = food;
+    locations.push(newPlace);
 }
 
 /***************************************************************************************************
@@ -160,4 +148,17 @@ function pickAnotherCountry() {
 function putPickedPlaceData(pickedPlace) {
     $('#location').text(pickedPlace.title);
     $('body').css("background", "url('" + pickedPlace.imgSrc + "') no-repeat fixed");
+}
+
+/***************************************************************************************************
+ * pickRandomLocation - Picks random location from locationsArray
+ * @param: {locationsArray}
+ * @returns: {randomLocation} picks location from array
+ * @calls:
+ */
+
+function pickRandomLocation(locationsArray) {
+    var randomIndex = Math.floor(Math.random() * locationsArray.length);
+    var randomLocation = locationsArray[randomIndex];
+    return randomLocation;
 }
