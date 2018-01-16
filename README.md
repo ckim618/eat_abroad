@@ -1,21 +1,12 @@
 # Eat Abroad
 
-Hackathon project involving the combination of different data sources into an application or game
+### Technologies: JavaScript, jQuery, AJAX, HTML5, CSS3, Bootstrap
 
-### Requirements
-- Combine at least 3 **external** resources via AJAX requests and present their information in an application
-- Must be documented loosely on JSDOC standards
-- Must be issue-managed via meistertask 
-  - share the meistertask with daniel.paschal@learningfuze.com
-  - name your project 9.17 Team [your team number] Hackathon
+### Description
+
+Eat Abroad is an application to help you try differnt cusines, pulling data from Yelp, Google Maps, and DarkSky APIs.  The application randomly chooses a country and then pulls your geolocation from your wifi signal to pick a resturant from yelp.  This application was developed using jQuery and Bootstrap for a mobile responsive experience.
 
 
-### Judging Criteria
-- **Appeal** : is it visually appealing / well put together
-- **Code Quality** : is the code properly formatted, are variables and functions well defined and documented
-- **Presentation** : How well is it presented during the unveiling session
-- **Task / Issue Management** : How well was the development process documented / controlled.  Were there well-defined issues, milestones, and project management
-- **Innovative / Transformative** : Did the project do something new and exciting?  Was it bold and tried to do things that haven't been done much.  Did it combine the data sources together in a way that was more useful than either source by itself
-- **Ease of Use / Understanding** : Was it easy to use the application / game, or if it was more complex, was the application or game able to provide you with tutorials or instructions that made understanding it a breeze.
+
 
 

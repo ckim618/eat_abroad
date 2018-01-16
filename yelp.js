@@ -37,6 +37,8 @@ function displayYelp(response) {
     yelpPicture3 = yelpPhoto[2];
 
     $('#firstPage').fadeOut(500);
+    $('.cs-loader').hide();
+    $('.logo, #weatherBox').show();
 
     function yelpAppear() {
         var googleMapsContainer = $('<div>').addClass('mapsContainer');
@@ -67,8 +69,7 @@ function displayYelp(response) {
         });
         $('#mainPage').append(completedMapsContainer, completedReturnButton);
     }
-    $('.cs-loader').hide();
-    $('.logo, #weatherBox').show();
+
     setTimeout(yelpAppear, 500);
     setTimeout(initMap, 500);
 }
@@ -128,8 +129,8 @@ function yelpCall() {
             },
             error: function () {
                 $('.cs-loader').hide();
-                setTimeout(function() {
-                    alert('Yelp Failed Please Refresh Page');                    
+                setTimeout(function () {
+                    alert('Yelp Failed Please Refresh Page');
                 }, 2000);
             }
         })).then(function () {
@@ -143,6 +144,6 @@ function yelpCall() {
             success: function (response) {
                 displayYelp(response);
             }
-        })
-    })
+        });
+    });
 }

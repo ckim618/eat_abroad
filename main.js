@@ -27,7 +27,7 @@ function applyClickHandlers() {
     $(document).on('click', '.returnButton', returnButton);
     $(document).on('click', '.yelpButton', yelpButton);
     $(document).on('click', '#foodButton', geoLocateCall);
-    
+
 }
 
 
@@ -39,18 +39,18 @@ function applyClickHandlers() {
  */
 
 function initialize() {
-    pickedCuisine = pickRandomLocation(locations);  
+    pickedCuisine = pickRandomLocation(locations);
     $(window).on('load', function () {
         currentWeather();
-    });  
+    });
     $('.modal').modal('show');
-    $('.cs-loader').hide();    
-    applyClickHandlers();    
+    $('.cs-loader').hide();
+    applyClickHandlers();
     currentWeatherLocation();
     putPickedPlaceData(pickedCuisine);
-    moveUnderline();    
+    moveUnderline();
     startTime();
-   
+
 }
 
 /***************************************************************************************************
@@ -76,8 +76,8 @@ function moveUnderline() {
  * @calls: { pickRandomLocation, putPickedPlaceData, currentWeather, geoLocateCall }
  */
 function returnButton() {
-    pickedCuisine = pickRandomLocation(locations); 
-    $('#foodButton').on('click', geoLocateCall);        
+    pickedCuisine = pickRandomLocation(locations);
+    $('#foodButton').on('click', geoLocateCall);
     removeElements()
     putPickedPlaceData(pickedCuisine);
     moveUnderline();
@@ -93,15 +93,15 @@ function returnButton() {
 function removeElements() {
     $('.carousel').addClass('hidden');
     $('.clock').removeClass('clockHide').css('display', 'inline-block');
-    $('#firstPage').css('display', 'flex');    
+    $('#firstPage').css('display', 'flex');
     $(' #googleMaps, .mapsContainer, .returnButton, .returnButtonContainer, .row, .yelpButton').remove();
     //Clears black 
     $('.navContainer').css({
         "background-color": "",
         "border-bottom": "",
     });
-    $('#weatherBox').css('display', 'flex');    
-    moveUnderline();    
+    $('#weatherBox').css('display', 'flex');
+    moveUnderline();
 }
 
 /***************************************************************************************************
