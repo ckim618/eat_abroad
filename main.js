@@ -23,8 +23,9 @@ $(document).ready(function () {
 function applyClickHandlers() {
     $('#foodButton').on('click', geoLocateCall);
     $('#countryButton').on('click', pickAnotherCountry);
+    $('.logo').on('click', removeElements);
     //Since both butons below are created dynamically, must delegate event.
-    $(document).on('click', '.returnButton, .logo', returnButton);
+    $(document).on('click', '.returnButton', returnButton);
     $(document).on('click', '.yelpButton', yelpButton);
 }
 
@@ -73,21 +74,26 @@ function moveUnderline() {
  * @calls: { pickRandomLocation, putPickedPlaceData, currentWeather, geoLocateCall }
  */
 function returnButton() {
+    removeElements()
+    putPickedPlaceData(pickedCuisine);
+    moveUnderline();
+    $('#foodButton').on('click', geoLocateCall);    
+    pickedCuisine = pickRandomLocation(locations);    
+}
+
+function removeElements() {
     $('#weatherBox').css('display', 'flex');
     $('#firstPage').css('display', 'flex');
     $('.carousel').addClass('hidden');
-    $('.returnButtonContainer, .mapsContainer').remove();
+    $('.clock').removeClass('clockHide').css('display', 'inline-block');
     //Removes black background when going back a page
     $('.navContainer').css({
         "background-color": "",
         "border-bottom": ""
     });
-    $('.returnButton, .row, #googleMaps, .yelpButton').remove();
-    pickedCuisine = pickRandomLocation(locations);
-    putPickedPlaceData(pickedCuisine);
-    moveUnderline();
-    $('.clock').removeClass('clockHide').css('display', 'inline-block');
-    $('#foodButton').on('click', geoLocateCall);
+    $('.returnButton, .row, #googleMaps, .yelpButton, .returnButtonContainer, .mapsContainer').remove();
+    $('#foodButton').on('click', geoLocateCall);    
+    moveUnderline();    
 }
 
 /***************************************************************************************************

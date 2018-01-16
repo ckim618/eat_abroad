@@ -66,8 +66,7 @@ function displayYelp(response) {
             "width": "100%",
             "height": "60px"
         });
-        $('#mainPage').append(completedMapsContainer, completedReturnButton);
-
+        $('#mainPage').append(completedMapsContainer, completedReturnButton);            
     }
     $('.cs-loader').hide();
     $('.logo, #weatherBox').show();

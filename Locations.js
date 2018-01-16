@@ -134,7 +134,8 @@ function newLocation(title, src, food) {
  * @calls: 
  */
 function pickAnotherCountry() {
-    pickedCuisine = pickRandomLocation(locations);
+    pickedCuisine = pickRandomLocation(locations);    
+    removeElements();
     putPickedPlaceData(pickedCuisine);
 }
 
