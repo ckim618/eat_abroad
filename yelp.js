@@ -99,7 +99,9 @@ function displayYelp(response) {
     $('#firstPage').fadeOut(500);
 
     function yelpAppear() {
+        var googleMapsContainer = $('<div>').addClass('mapsContainer');
         var googleMaps = $('<div>').attr('id', 'googleMaps');
+        var completedMapsContainer = $(googleMapsContainer).append(googleMaps);
         var returnButtonContainer = $('<div>').addClass('returnButtonContainer');
         var returnButton = $('<h3>').text('Try Another Country').addClass('returnButton');
         var yelpButton = $('<h3>').text('Check Out On Yelp').addClass('yelpButton');
@@ -116,9 +118,15 @@ function displayYelp(response) {
         $('.yelpPic2').attr('src', yelpPicture2);
         $('.yelpAddress').text(yelpAddress);        
         $('.yelpPic3').attr('src', yelpPicture3);
-        $('.yelpPhone').text('Phone: ' + yelpPhone);        
-        $('#mainPage').append(googleMaps, completedReturnButton);
-    
+        $('.yelpPhone').text('Phone: ' + yelpPhone); 
+        $('.navContainer').css({
+            "background-color": "black",
+            "border-bottom": "3px solid white",
+            "width": "100%",
+            "height": "60px"
+        });       
+        $('#mainPage').append(completedMapsContainer, completedReturnButton);
+
     }
     $('.cs-loader').hide();
     $('.logo, #weatherBox').show();

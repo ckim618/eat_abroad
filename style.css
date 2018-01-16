@@ -6,7 +6,7 @@
 body {
     font-family: 'dense';
     background-size: cover !important;
-    background-position: center !important;    
+    background-position: center !important;
 }
 
 #businessAddress {
@@ -75,6 +75,7 @@ body {
 .container {
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 #countryButton {
@@ -118,10 +119,8 @@ body {
 }
 
 #googleMaps {
-    height: 30%;
+    height: 100%;
     width: 80%;
-    margin-left: 10%;
-    margin-top: 2%;
     opacity: 0.92;
 }
 
@@ -174,7 +173,16 @@ li {
     background-color: rgba(0, 0, 0, 0.3) !important;
 }
 
+.mapsContainer {
+    width: 100%;
+    height: 33vh;
+    justify-content: center;
+    display: flex;
+}
+
+
 /* Needed to override position of modal from bootstrap */
+
 .modal {
     top: 20% !important;
 }
@@ -212,17 +220,19 @@ li {
 }
 
 .returnButton {
-    margin-right: 40px;
+    margin-right: 20px;
 }
 
-.returnButton, .yelpButton {
+.returnButton,
+.yelpButton {
     height: 5%;
     bottom: 2%;
     font-size: 2.5rem;
     color: whitesmoke;
 }
 
-.returnButton:hover, .yelpButton:hover {
+.returnButton:hover,
+.yelpButton:hover {
     cursor: pointer;
 }
 
@@ -287,9 +297,10 @@ ul {
     margin-left: 40px;
 }
 
-.yelpButton:hover, .returnButton:hover {
+.yelpButton:hover,
+.returnButton:hover {
     color: rgb(201, 201, 201);
-} 
+}
 
 #yelpInfo {
     text-align: center;
@@ -343,9 +354,7 @@ ul {
 *            Media Query                  *
 ******************************************/
 
-
 @media only screen and (max-width: 750px) {
-   
     .buttonContainer {
         width: 80%
     }
@@ -379,14 +388,27 @@ ul {
 }
 
 @media only screen and (max-width: 420px) {
+    .carousel {
+        width: 100%;
+        margin: 0;
+        border-bottom: 3px solid white;
+    }
+    .container {
+        width: 100%;
+        padding: 0;
+    }
     .cityName {
         display: none;
+    }
+    .mapsContainer {
+        height: 45vh;
     }
     .returnButtonContainer {
         background-color: black;
         border-top: 3px solid white;
     }
-    .returnButton, .yelpButton {
+    .returnButton,
+    .yelpButton {
         margin-top: 3%;
     }
     .row {
@@ -402,7 +424,6 @@ ul {
         transform: translateY(0%);
         margin-left: 0;
         border-radius: 0;
-        height: 41%;
         width: 100%;
         margin-top: 0;
     }
