@@ -51,7 +51,6 @@ function currentWeather() {
             method: 'get',
             url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + weatherLatitude + ',' + weatherLongitude + '&key=' + key,
             success: function (result) {
-                console.log(result)
                 var city = result.results[0].address_components[1].long_name;
                 var state = result.results[0].address_components[3].short_name;
                 var cityDiv = $('<div>').text(city + ', ' + state).addClass('cityName');
